@@ -62,5 +62,7 @@ public class KhachHang extends Nguoi {
         super.xuat();
     }
     
-    
+    public void test() {
+        System.out.print("Abc");
+    }
 }
