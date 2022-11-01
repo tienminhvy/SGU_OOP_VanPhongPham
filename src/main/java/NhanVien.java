@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
- * @author Admin
+ * @author Tien Minh Vy
  */
 import java.util.Scanner;
 public class NhanVien extends Nguoi{
@@ -176,7 +171,7 @@ public class NhanVien extends Nguoi{
     
     public void xuat() {
         System.out.println("Ma nhan vien: "+getMaNhanVien());
-        super.xuat(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.xuat();
         System.out.println("Ngay vao lam: "+getNgayVaoLam());
         System.out.println("He so luong: "+getHeSoLuong());
         System.out.println("So ngay nghi trong thang: "+getSoNgayNghiTrongThang());
@@ -185,5 +180,7 @@ public class NhanVien extends Nguoi{
         System.out.println("Hang: "+getHang());
     }
     
-    
+    public static void xuat(NhanVien nv) {
+        nv.xuat();
+    }
 }
