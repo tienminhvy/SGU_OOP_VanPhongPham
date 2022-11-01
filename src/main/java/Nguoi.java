@@ -67,6 +67,8 @@ public class Nguoi {
                     break;
             }
             
+            if (2022 - nam < 18) check = false;
+            
         } while (!check);
         this.ngaySinh = ngay+"/"+thang+"/"+nam;
     }
@@ -103,7 +105,7 @@ public class Nguoi {
         String soDienThoai;
         do {
             soDienThoai = sc.nextLine();
-            if (soDienThoai.indexOf(0) != '0') check = false;
+            if (soDienThoai.indexOf("0") != 0) check = false;
             if (soDienThoai.length() != 10) check = false;
         } while (!check);
         this.soDienThoai = soDienThoai;
@@ -111,7 +113,7 @@ public class Nguoi {
 
     @Override
     public String toString() {
-        return super.toString(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return super.toString();
     }
     
     public void nhap() {
@@ -125,5 +127,13 @@ public class Nguoi {
         setDiaChi();
         System.out.print("Nhap so dien thoai: ");
         setSoDienThoai();
+    }
+    
+    public void xuat() {
+        System.out.println("Ho ten: "+getHoTen());
+        System.out.println("Ngay Sinh: "+getNgaySinh());
+        System.out.println("Chung minh nhan dan/Can cuoc cong dan: "+getCmt());
+        System.out.println("Dia chi: "+getDiaChi());
+        System.out.println("So dien thoai: "+getSoDienThoai());
     }
 }
