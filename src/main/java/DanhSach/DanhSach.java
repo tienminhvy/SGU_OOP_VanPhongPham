@@ -8,6 +8,7 @@ package DanhSach;
  *
  * @author Admin
  */
-public class DanhSach {
-    
+public abstract class DanhSach {
+    public abstract void nhapDanhSach();
+    public abstract void xuatDanhSach();
 }

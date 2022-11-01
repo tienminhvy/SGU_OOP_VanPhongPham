@@ -9,6 +9,7 @@ package HangHoa;
  *
  * @author Admin
  */
-public class PhanTu {
-    
+public abstract class PhanTu {
+    public abstract void nhap();
+    public abstract void xuat();
 }
