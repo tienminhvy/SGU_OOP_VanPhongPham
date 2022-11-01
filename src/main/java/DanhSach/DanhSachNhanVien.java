@@ -9,5 +9,8 @@ package DanhSach;
  * @author Admin
  */
 public class DanhSachNhanVien {
+
+    public DanhSachNhanVien() {
+    }
     
 }
