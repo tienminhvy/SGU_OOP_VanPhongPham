@@ -53,13 +53,13 @@ public class KhachHang extends Nguoi {
     public void nhap() {
         System.out.print("Nhap ma khach hang: ");
         setMaKhachHang(sc.nextLine());
-        super.nhap(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.nhap();
     }
 
     @Override
     public void xuat() {
         System.out.println("Ma khach hang: "+getMaKhachHang());
-        super.xuat(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.xuat();
     }
     
     
