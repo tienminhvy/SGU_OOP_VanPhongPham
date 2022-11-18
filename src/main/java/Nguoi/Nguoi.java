@@ -4,10 +4,10 @@ package Nguoi;
  *
  * @author Tien Minh Vy
  */
+import HangHoa.PhanTu;
 import java.util.Scanner;
-public class Nguoi {
+public abstract class Nguoi extends PhanTu {
     private String hoTen;
-    private String ngaySinh;
     private String cmt;
     private String diaChi;
     private String soDienThoai;
@@ -17,9 +17,8 @@ public class Nguoi {
     public Nguoi() {
     }
 
-    public Nguoi(String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
+    public Nguoi(String hoTen, String cmt, String diaChi, String soDienThoai) {
         this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
         this.cmt = cmt;
         this.diaChi = diaChi;
         this.soDienThoai = soDienThoai;
@@ -31,48 +30,6 @@ public class Nguoi {
 
     public void setHoTen() {
         this.hoTen = sc.nextLine();
-    }
-
-    public String getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh() {
-        boolean check = true;
-        int ngay, thang, nam;
-        do {
-            System.out.print("Nhap ngay: ");
-            ngay = Integer.parseInt(sc.nextLine());
-            System.out.print("Nhap thang: ");
-            thang = Integer.parseInt(sc.nextLine());
-            System.out.print("Nhap nam: ");
-            nam = Integer.parseInt(sc.nextLine());
-            
-            if (ngay <= 0 || ngay > 31) check = false;
-            if (thang <= 0 || ngay > 12) check = false;
-            if (nam <= 1920 || nam > 2022) check = false;
-            
-            if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0)) {
-                // nam nhuan
-                if (thang == 2) {
-                    if (ngay > 29) check = false;
-                }
-            } else {
-                if (thang == 2) {
-                    if (ngay > 28) check = false;
-                }
-            }
-            
-            switch (thang) {
-                case 4,6,9,11:
-                    if (ngay > 30) check = false;
-                    break;
-            }
-            
-            if (2022 - nam < 18) check = false;
-            
-        } while (!check);
-        this.ngaySinh = ngay+"/"+thang+"/"+nam;
     }
 
     public String getCmt() {
@@ -121,8 +78,6 @@ public class Nguoi {
     public void nhap() {
         System.out.print("Nhap ho ten: ");
         setHoTen();
-        System.out.print("Nhap ngay sinh: ");
-        setNgaySinh();
         System.out.print("Nhap chung minh thu: ");
         setCmt();
         System.out.print("Nhap dia chi: ");
@@ -133,9 +88,10 @@ public class Nguoi {
     
     public void xuat() {
         System.out.println("Ho ten: "+getHoTen());
-        System.out.println("Ngay Sinh: "+getNgaySinh());
         System.out.println("Chung minh nhan dan/Can cuoc cong dan: "+getCmt());
         System.out.println("Dia chi: "+getDiaChi());
         System.out.println("So dien thoai: "+getSoDienThoai());
     }
+    
+    public abstract void suaThongTin();
 }

@@ -30,7 +30,7 @@ public class NhanVien extends Nguoi{
     }
 
     public NhanVien(int maNhanVien, String ngayVaoLam, int LuongCoBan, double heSoLuong, double luong, double thuong, char hang, String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
-        super(hoTen, ngaySinh, cmt, diaChi, soDienThoai);
+        super(hoTen, cmt, diaChi, soDienThoai);
         this.maNhanVien = maNhanVien;
         this.ngayVaoLam = ngayVaoLam;
         this.luongCoBan = LuongCoBan;
@@ -170,19 +170,71 @@ public class NhanVien extends Nguoi{
     }
 
     @Override
-    
     public void xuat() {
         System.out.println("Ma nhan vien: "+getMaNhanVien());
         super.xuat();
         System.out.println("Ngay vao lam: "+getNgayVaoLam());
-        System.out.println("He so luong: "+getHeSoLuong());
+        System.out.println("He so lương: "+getHeSoLuong());
         System.out.println("So ngay nghi trong thang: "+getSoNgayNghiTrongThang());
-        System.out.println("Luong: "+getLuong());
+        System.out.println("Lương: "+getLuong());
         System.out.println("Thuong: "+getThuong());
         System.out.println("Hang: "+getHang());
     }
     
     public static void xuat(NhanVien nv) {
         nv.xuat();
+    }
+
+    @Override
+    public void suaThongTin() {
+        System.out.println("=== Sua thong tin nhan vien ===");
+        System.out.println("1. Sua ho ten");
+        System.out.println("2. Sua chung minh thư");
+        System.out.println("3. Sua dia chi");
+        System.out.println("4. Sua so dien thoai");
+        System.out.println("5. Sua ngay vao lam");
+        System.out.println("6. Sua he so lương");
+        System.out.println("7. Sua so ngay nghi trong thang");
+        System.out.println("===============================");
+        int chon;
+        do {
+            System.out.print("Nhap lua chon: ");
+            chon = Integer.parseInt(sc.nextLine());
+            switch (chon) {
+                case 1:
+                    System.out.println("Thong tin hien tai: "+getHoTen());
+                    setHoTen();
+                    break;
+                case 2:
+                    System.out.println("Thong tin hien tai: "+getCmt());
+                    setCmt();
+                    break;
+                case 3:
+                    System.out.println("Thong tin hien tai: "+getDiaChi());
+                    setDiaChi();
+                    break;
+                case 4:
+                    System.out.println("Thong tin hien tai: "+getSoDienThoai());
+                    setSoDienThoai();
+                    break;
+                case 5:
+                    System.out.println("Thong tin hien tai: "+getNgayVaoLam());
+                    setSoDienThoai();
+                    break;
+                case 6:
+                    System.out.println("Thong tin hien tai: "+getHeSoLuong());
+                    System.out.print("Nhap nội dung: ");
+                    setSoDienThoai();
+                    break;
+                case 7:
+                    System.out.println("Thong tin hien tai: "+getSoNgayNghiTrongThang());
+                    setSoNgayNghiTrongThang();
+                    break;
+                default:
+                    chon = 0;
+                    break;
+            }
+            if (chon==0) System.out.println("Hay chon lai!");
+        } while(chon==0);
     }
 }

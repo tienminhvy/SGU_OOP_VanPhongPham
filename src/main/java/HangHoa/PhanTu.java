@@ -12,4 +12,5 @@ package HangHoa;
 public abstract class PhanTu {
     public abstract void nhap();
     public abstract void xuat();
+    public abstract void suaThongTin();
 }

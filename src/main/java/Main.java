@@ -1,8 +1,14 @@
-// Luu y: Khong chinh sua file nay!
+import DanhSach.DanhSachSanPham;
+import File.FileHandler;
+import HangHoa.SanPham;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FileHandler.taoCacFile();
+        DanhSachSanPham ttds = new DanhSachSanPham();
+//        ttds.getdsSanPham();
+//        ttds.xuatDanhSach();
+        ttds.themKPhanTuVaoDanhSach();
     }
 }
