@@ -1,33 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ThanhToan;
-
-import java.util.Scanner;
+import static ThanhToan.ThanhToan.sc;
 
 public class CKNganHang {
-    private String soThe;
+    private String soTheTk;
     private int CVV;
-
-    Scanner sc = new Scanner(System.in);
 
     public CKNganHang(){
 
     }
 
-    public CKNganHang(String soThe, int CVV) {
-        this.soThe = soThe;
+    public CKNganHang(String soTheTk, int CVV) {
+        this.soTheTk = soTheTk;
         this.CVV = CVV;
     }
 
-    public String getSoThe() {
-        return soThe;
+    public String getSoTheTk() {
+        return soTheTk;
+    }
+
+    public void setSoTheTk(String soTheTk) {
+        this.soTheTk = soTheTk;
     }
     
-    //hàm kiểm tra số thẻ;
-    
-    public boolean kiemTraSo(char c){
+    public boolean kiemTraSo(char c){ // phương thức kiểm tra số
         try {
             Integer.parseInt(""+c);
             return true;
@@ -36,19 +31,22 @@ public class CKNganHang {
         }
     }
 
-    public void setSoThe() {
+    public void setSoTheTk() {
         boolean check = true;
         do {
-            System.out.print("Nhập lại số thẻ: ");
-            soThe = sc.nextLine();
-            if(soThe.length() == 16 || soThe.length() == 19){
-                for(int i = 0; i < soThe.length(); i++){
-                    if( !kiemTraSo(soThe.charAt(i)) ) {
+            System.out.print("Nhap so the: ");
+            soTheTk = sc.nextLine();
+            if(soTheTk.length() == 16 || soTheTk.length() == 19){ // kiểm tra số thẻ
+                for(int i = 0; i < soTheTk.length(); i++){
+                    if( !kiemTraSo(soTheTk.charAt(i)) ) { // nếu có chứa ký tự
                         check = false;
                         break;
                     }
                 }
-            } else check = false;
+            } else {
+                System.out.println("So the khong hop le!");
+                check = false;
+            }
         } while(!check);
     }
 
@@ -59,13 +57,39 @@ public class CKNganHang {
     public void setCVV(int CVV) {
         this.CVV = CVV;
     }
+
+    public void setCVV() {
+        boolean check = true;
+        do {
+            System.out.print("Nhap so CVV/CVC: ");
+            String CVVTemp = sc.nextLine();
+            
+            if(CVVTemp.length() == 3){
+                
+                for(int i = 0; i < CVVTemp.length(); i++){
+                    if( !kiemTraSo(CVVTemp.charAt(i)) ) {
+                        check = false;
+                        break;
+                    }
+                }
+                CVV = Integer.parseInt(CVVTemp);
+                
+            } else {
+                System.out.println("So CVV/CVC khong hop le!");
+                check = false;
+            }
+        } while(!check);
+    }
      
     public void nhapThongTin(){
-        System.out.print("Nhập số thẻ: ");
-        soThe = sc.nextLine();
-        System.out.print("Nhập CVV: ");
-        CVV = Integer.parseInt(sc.nextLine());        
+        System.out.print("Nhap so the/tai khoan: ");
+        setSoTheTk();
+        System.out.print("Nhap CVV: ");
+        setCVV();        
     }
     
-    
+    public void xuat() {
+        System.out.println("So the/tai khoan: "+soTheTk);
+        System.out.println("CVV: "+CVV);
+    }
 }

@@ -1,31 +1,33 @@
 package Nguoi;
-
+import DanhSach.DanhSachKhachHang;
+import ThanhToan.ThanhToan;
 /**
  *
  * @author Tien Minh Vy
  */
-import static Nguoi.NhanVien.sc;
-import java.util.Scanner;
+
 public class KhachHang extends Nguoi {
     private int soDonHangDaThanhToan;
     private int tongTienDaThanhToan;
     private int maKhachHang;
-    public static Scanner sc = new Scanner(System.in);
+    private ThanhToan phThThanhToan = null;
 
     public KhachHang() {
     }
 
-    public KhachHang(int soDonHangDaThanhToan, int tongTienDaThanhToan, int maKhachHang) {
+    public KhachHang(int soDonHangDaThanhToan, int tongTienDaThanhToan, int maKhachHang, ThanhToan phThThanhToan) {
         this.soDonHangDaThanhToan = soDonHangDaThanhToan;
         this.tongTienDaThanhToan = tongTienDaThanhToan;
         this.maKhachHang = maKhachHang;
+        this.phThThanhToan = phThThanhToan;
     }
 
-    public KhachHang(int soDonHangDaThanhToan, int tongTienDaThanhToan, int maKhachHang, String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
+    public KhachHang(int soDonHangDaThanhToan, int tongTienDaThanhToan, int maKhachHang, ThanhToan phThThanhToan, String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
         super(hoTen, cmt, diaChi, soDienThoai);
         this.soDonHangDaThanhToan = soDonHangDaThanhToan;
         this.tongTienDaThanhToan = tongTienDaThanhToan;
         this.maKhachHang = maKhachHang;
+        this.phThThanhToan = phThThanhToan;
     }
 
     public int getSoDonHangDaThanhToan() {
@@ -48,21 +50,54 @@ public class KhachHang extends Nguoi {
         return maKhachHang;
     }
 
-    public void setMaKhachHang(String maKhachHang) {
-        this.maKhachHang = Integer.parseInt(maKhachHang);
+    public void setMaKhachHang(int maKhachHang) {
+        this.maKhachHang = maKhachHang;
+    }
+    
+    public void setMaKhachHang() {
+        System.out.print("Nhap ma khach hang: ");
+        DanhSachKhachHang ttds = new DanhSachKhachHang();
+        boolean check = false;
+        do
+        {
+            maKhachHang = Integer.parseInt(sc.nextLine());
+            check = ttds.layPhanTuVoi(maKhachHang+"") == null;
+            if (!check) System.out.print("Ma khach hang da ton tai, moi nhap lai: ");
+        } while (!check);
+    }
+
+    public ThanhToan getPhThThanhToan() {
+        return phThThanhToan;
+    }
+
+    public void setPhThThanhToan(ThanhToan phThThanhToan) {
+        this.phThThanhToan = phThThanhToan;
+    }
+
+    public void setPhThThanhToan() {
+        int chon;
+        System.out.print("Nhap 1 neu muon nhap phuong thuc thanh toan cho khach hang nay: ");
+        chon = Integer.parseInt(sc.nextLine());
+        if (chon == 1) {
+            phThThanhToan = new ThanhToan();
+            phThThanhToan.chonPhThThanhToan();
+            phThThanhToan.LienKet();
+        }
     }
 
     @Override
     public void nhap() {
-        System.out.print("Nhap ma khach hang: ");
-        setMaKhachHang(sc.nextLine());
+        setMaKhachHang();
         super.nhap();
+        setPhThThanhToan();
     }
 
     @Override
     public void xuat() {
         System.out.println("Ma khach hang: "+getMaKhachHang());
         super.xuat();
+        if (phThThanhToan != null) phThThanhToan.xuat();
+        System.out.println("**************************");
     }
     
     public static void xuat(KhachHang kh) {
@@ -76,6 +111,7 @@ public class KhachHang extends Nguoi {
         System.out.println("2. Sua chung minh thu");
         System.out.println("3. Sua dia chi");
         System.out.println("4. Sua so dien thoai");
+        System.out.println("5. Sua phuong thuc thanh toan");
         System.out.println("===============================");
         int chon;
         do {
@@ -97,6 +133,10 @@ public class KhachHang extends Nguoi {
                 case 4:
                     System.out.println("Thong tin hien tai: "+getSoDienThoai());
                     setSoDienThoai();
+                    break;
+                case 5:
+                    System.out.println("Thong tin hien tai: "+getPhThThanhToan().getPhuongThucThanhToan());
+                    setPhThThanhToan();
                     break;
                 default:
                     chon = 0;

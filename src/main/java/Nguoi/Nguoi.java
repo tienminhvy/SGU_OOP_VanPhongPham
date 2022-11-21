@@ -1,18 +1,14 @@
 package Nguoi;
-
+import HangHoa.PhanTu;
 /**
  *
  * @author Tien Minh Vy
  */
-import HangHoa.PhanTu;
-import java.util.Scanner;
 public abstract class Nguoi extends PhanTu {
     private String hoTen;
     private String cmt;
     private String diaChi;
     private String soDienThoai;
-    
-    public static Scanner sc = new Scanner(System.in);
 
     public Nguoi() {
     }
@@ -32,18 +28,27 @@ public abstract class Nguoi extends PhanTu {
         this.hoTen = sc.nextLine();
     }
 
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
     public String getCmt() {
         return cmt;
     }
 
     public void setCmt() {
         String cmt;
-        boolean check = true;
+        boolean check = false;
         do {
             cmt = sc.nextLine();
-            if (cmt.length() == 9) break;
-            if (cmt.length() == 12) break;
+            if (cmt.length() == 9) check = true;
+            if (cmt.length() == 12) check = true;
+            if (!check) System.out.print("Moi nhap lai: ");
         } while(!check);
+        this.cmt = cmt;
+    }
+
+    public void setCmt(String cmt) {
         this.cmt = cmt;
     }
 
@@ -55,18 +60,29 @@ public abstract class Nguoi extends PhanTu {
         this.diaChi = sc.nextLine();
     }
 
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
     public String getSoDienThoai() {
         return soDienThoai;
     }
 
     public void setSoDienThoai() {
-        boolean check = true;
+        boolean check = false;
         String soDienThoai;
         do {
             soDienThoai = sc.nextLine();
-            if (soDienThoai.indexOf("0") != 0) check = false;
-            if (soDienThoai.length() != 10) check = false;
+            if (soDienThoai.length() == 10) check = true;
+            else check = false;
+            if (soDienThoai.indexOf("0") == 0) check = true;
+            else check = false;
+            if (!check) System.out.print("Moi nhap lai: ");
         } while (!check);
+        this.soDienThoai = soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 

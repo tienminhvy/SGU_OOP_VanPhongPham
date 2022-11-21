@@ -1,25 +1,26 @@
 package Nguoi;
 
+import DanhSach.DanhSachNhanVien;
+
 /**
  *
  * @author Tien Minh Vy
  */
-import java.util.Scanner;
+
 public class NhanVien extends Nguoi{
     private int maNhanVien;
     private String ngayVaoLam;
-    private static int luongCoBan = 4680000;
+    private static int luongCoBan = 4500000;
     private double heSoLuong;
     private double luong;
     private double thuong;
     private char hang;
     private int soNgayNghiTrongThang;
-    public static Scanner sc = new Scanner(System.in);
 
     public NhanVien() {
     }
 
-    public NhanVien(int maNhanVien, String ngayVaoLam, int LuongCoBan, double heSoLuong, double luong, double thuong, char hang) {
+    public NhanVien(int maNhanVien, String ngayVaoLam, int LuongCoBan, double heSoLuong, double luong, double thuong, char hang, int soNgayNghiTrongThang) {
         this.maNhanVien = maNhanVien;
         this.ngayVaoLam = ngayVaoLam;
         this.luongCoBan = LuongCoBan;
@@ -27,9 +28,11 @@ public class NhanVien extends Nguoi{
         this.luong = luong;
         this.thuong = thuong;
         this.hang = hang;
+        this.soNgayNghiTrongThang = soNgayNghiTrongThang;
     }
 
-    public NhanVien(int maNhanVien, String ngayVaoLam, int LuongCoBan, double heSoLuong, double luong, double thuong, char hang, String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
+    public NhanVien(int maNhanVien, String ngayVaoLam, int LuongCoBan, double heSoLuong, double luong, double thuong, char hang, int soNgayNghiTrongThang,
+            String hoTen, String ngaySinh, String cmt, String diaChi, String soDienThoai) {
         super(hoTen, cmt, diaChi, soDienThoai);
         this.maNhanVien = maNhanVien;
         this.ngayVaoLam = ngayVaoLam;
@@ -38,14 +41,27 @@ public class NhanVien extends Nguoi{
         this.luong = luong;
         this.thuong = thuong;
         this.hang = hang;
+        this.soNgayNghiTrongThang = soNgayNghiTrongThang;
     }
 
     public int getMaNhanVien() {
         return maNhanVien;
     }
 
+    public void setMaNhanVien(int maNhanVien) {
+        this.maNhanVien = maNhanVien;
+    }
+
     public void setMaNhanVien() {
-        this.maNhanVien = Integer.parseInt(sc.nextLine());
+        System.out.print("Nhap ma nhan vien: ");
+        DanhSachNhanVien ttds = new DanhSachNhanVien();
+        boolean check = false;
+        do
+        {
+            maNhanVien = Integer.parseInt(sc.nextLine());
+            check = ttds.layPhanTuVoi(maNhanVien+"") == null;
+            if (!check) System.out.print("Ma san pham da ton tai, moi nhap lai: ");
+        } while (!check);
     }
 
     public String getNgayVaoLam() {
@@ -53,8 +69,10 @@ public class NhanVien extends Nguoi{
     }
 
     public void setNgayVaoLam() {
+        System.out.print("Nhap ngay vao lam: ");
         boolean check = true;
         int ngay, thang, nam;
+        // kiểm tra điều kiện ngày/tháng/năm
         do {
             System.out.print("Nhap ngay: ");
             ngay = Integer.parseInt(sc.nextLine());
@@ -63,39 +81,63 @@ public class NhanVien extends Nguoi{
             System.out.print("Nhap nam: ");
             nam = Integer.parseInt(sc.nextLine());
             
-            if (ngay <= 0 || ngay > 31) check = false;
-            if (thang <= 0 || ngay > 12) check = false;
-            if (nam <= 1920 || nam > 2022) check = false;
+            if (ngay <= 0 || ngay > 31) {
+                check = false;
+                System.out.println("Ngay khong hop le!");
+            }
+            if (thang <= 0 || thang > 12) {
+                check = false;
+                System.out.println("Thang khong hop le!");
+            }
+            if (nam <= 1920 || nam > 2022) {
+                check = false;
+                System.out.println("Nam khong hop le!");
+            }
             
-            if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0)) {
-                // nam nhuan
+            if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0)) { // năm nhuận
                 if (thang == 2) {
-                    if (ngay > 29) check = false;
+                    if (ngay > 29) {
+                        check = false;
+                        System.out.println("Thang 2 nam da nhap chi co 29 ngay!");
+                    }
                 }
-            } else {
+            } else { // không nhuận
                 if (thang == 2) {
-                    if (ngay > 28) check = false;
+                    if (ngay > 28) {
+                        check = false;
+                        System.out.println("Thang 2 nam da nhap chi co 28 ngay!");
+                    }
                 }
             }
             
-            switch (thang) {
+            switch (thang) { // các trường hợp còn lại
                 case 4,6,9,11:
-                    if (ngay > 30) check = false;
+                    if (ngay > 30) {
+                        check = false;
+                        System.out.println("Thang da nhap chi co 30 ngay!");
+                    }
                     break;
             }
-            
-            if (2022 - nam < 18) check = false;
             
         } while (!check);
         this.ngayVaoLam = ngay+"/"+thang+"/"+nam;
     }
 
+    public void setNgayVaoLam(String ngayVaoLam) {
+        this.ngayVaoLam = ngayVaoLam;
+    }
+    
     public double getHeSoLuong() {
         return heSoLuong;
     }
 
     public void setHeSoLuong() {
+        System.out.print("Nhap he so luong: ");
         this.heSoLuong = Double.parseDouble(sc.nextLine());
+    }
+
+    public void setHeSoLuong(double heSoLuong) {
+        this.heSoLuong = heSoLuong;
     }
 
     public double getLuong() {
@@ -120,12 +162,14 @@ public class NhanVien extends Nguoi{
         return hang;
     }
 
-    public void setHang(char hang) {
+    public void setHang(char hang) { // tính hạng và thưởng dựa theo ngày vào làm
         this.hang = hang;
         double thuong = 0;
+        
         String ngayVaoLam = getNgayVaoLam();
-        String[] ngayThangNam = ngayVaoLam.split("/");
-        if (2022 - Integer.parseInt(ngayThangNam[2]) > 1) {
+        String[] ngayThangNam = ngayVaoLam.split("/"); // tách thành mảng
+        
+        if (2022 - Integer.parseInt(ngayThangNam[2]) > 1) { // nếu số năm làm việc > 1
             if (hang == 'A') thuong = luongCoBan * heSoLuong * 0.05;
             else if (hang == 'B') thuong = luongCoBan * heSoLuong * 0.02;
         }
@@ -146,25 +190,33 @@ public class NhanVien extends Nguoi{
 
     public void setSoNgayNghiTrongThang() {
         int soNgayNghiTrongThang;
+        
         do {
+            System.out.print("Nhap so ngay nghi trong thang: ");
             soNgayNghiTrongThang = Integer.parseInt(sc.nextLine());
         } while (soNgayNghiTrongThang < 0 || soNgayNghiTrongThang > 31);
+        
         if (soNgayNghiTrongThang < 2) setHang('A');
         else if (soNgayNghiTrongThang < 5) setHang('B');
         else setHang('C');
+        
         this.soNgayNghiTrongThang = soNgayNghiTrongThang;
+        setLuong();
+    }
+
+    public void setSoNgayNghiTrongThang(int soNgayNghiTrongThang) {
+        this.soNgayNghiTrongThang = soNgayNghiTrongThang;
+        if (soNgayNghiTrongThang < 2) setHang('A');
+        else if (soNgayNghiTrongThang < 5) setHang('B');
+        else setHang('C');
         setLuong();
     }
 
     @Override
     public void nhap() {
-        System.out.print("Nhap ma nhan vien: ");
         setMaNhanVien();
-        System.out.print("Nhap ngay vao lam: ");
         setNgayVaoLam();
-        System.out.print("Nhap he so luong: ");
         setHeSoLuong();
-        System.out.print("Nhap so ngay nghi trong thang: ");
         setSoNgayNghiTrongThang();
         super.nhap();
     }
@@ -174,11 +226,12 @@ public class NhanVien extends Nguoi{
         System.out.println("Ma nhan vien: "+getMaNhanVien());
         super.xuat();
         System.out.println("Ngay vao lam: "+getNgayVaoLam());
-        System.out.println("He so lương: "+getHeSoLuong());
+        System.out.println("He so luong: "+getHeSoLuong());
         System.out.println("So ngay nghi trong thang: "+getSoNgayNghiTrongThang());
-        System.out.println("Lương: "+getLuong());
+        System.out.println("Luong: "+getLuong());
         System.out.println("Thuong: "+getThuong());
         System.out.println("Hang: "+getHang());
+        System.out.println("**************************");
     }
     
     public static void xuat(NhanVien nv) {

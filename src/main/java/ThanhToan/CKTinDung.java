@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ThanhToan;
-
-import java.util.Scanner;
+import static ThanhToan.ThanhToan.sc;
 
 public class CKTinDung {
    private String soThe;
    private int CVV;
    private String loaiThe;
-   
-   Scanner sc = new Scanner(System.in);
    
    public CKTinDung(){
        
@@ -25,6 +18,11 @@ public class CKTinDung {
 
     public String getSoThe() {
         return soThe;
+    }
+
+    public void setSoThe(String soThe) {
+        this.soThe = soThe;
+        setLoaiThe();
     }
     
     //hàm kiểm tra số thẻ;
@@ -41,7 +39,7 @@ public class CKTinDung {
     public void setSoThe() {
         boolean check = true;
         do {
-            System.out.print("Nhập số thẻ: ");
+            System.out.print("Nhap so the: ");
             soThe = sc.nextLine();
             if(soThe.length() == 16 ){
                 for(int i = 0; i < soThe.length(); i++){
@@ -52,6 +50,7 @@ public class CKTinDung {
                 }
             } else check = false;
         } while(!check);
+        setLoaiThe();
     }
 
     public int getCVV() {
@@ -60,6 +59,26 @@ public class CKTinDung {
 
     public void setCVV(int CVV) {
         this.CVV = CVV;
+    }
+
+    public void setCVV() {
+        boolean check = true;
+        do {
+            System.out.print("Nhap so CVV/CVC: ");
+            String CVVTemp = sc.nextLine();
+            if(CVVTemp.length() == 3){
+                for(int i = 0; i < CVVTemp.length(); i++){
+                    if( !kiemTraSo(CVVTemp.charAt(i)) ) {
+                        check = false;
+                        break;
+                    }
+                }
+                CVV = Integer.parseInt(CVVTemp);
+            } else {
+                System.out.println("So CVV/CVC khong hop le!");
+                check = false;
+            }
+        } while(!check);
     }
 
     public String getLoaiThe() {
@@ -74,15 +93,18 @@ public class CKTinDung {
             loaiThe = "Master Card";
         else if (soThe.charAt(0) == '4')
             loaiThe = "Visa";
+        else 
+            loaiThe = "Unknown";
     }
     
     public void nhapThongTin(){
         setSoThe();
-        setLoaiThe();
-        System.out.print("Nhập CVV: ");
-        CVV = Integer.parseInt(sc.nextLine());
-                
+        setCVV();
     }
    
-   
+    public void xuat() {
+        System.out.println("So the/tai khoan: "+soThe);
+        System.out.println("Loai the: "+loaiThe);
+        System.out.println("CVV: "+CVV);
+    }
 }

@@ -1,7 +1,7 @@
 package HangHoa;
 
-import static Nguoi.NhanVien.sc;
-import java.util.Scanner;
+import DanhSach.DanhSachSanPham;
+
 public class SanPham extends PhanTu {
     private String maSanPham;
     private String tenSanPham;
@@ -9,7 +9,6 @@ public class SanPham extends PhanTu {
     private String noiSanXuat;
     private int soLuong;
     private int gia;
-    Scanner sc = new Scanner(System.in);
     
     public SanPham(){
         
@@ -30,7 +29,14 @@ public class SanPham extends PhanTu {
 
     public void setMaSanPham() {
         System.out.print("Nhap ma san pham: ");
-        maSanPham = sc.nextLine();
+        DanhSachSanPham ttds = new DanhSachSanPham();
+        boolean check = false;
+        do
+        {
+            maSanPham = sc.nextLine();
+            check = ttds.layPhanTuVoi(maSanPham) == null; // kiểm tra mã sản phẩm xem đã tồn tại trong danh sách chưa
+            if (!check) System.out.print("Ma san pham da ton tai, moi nhap lai: ");
+        } while (!check);
     }
     public void setMaSanPham(String maSanPham) {
         this.maSanPham = maSanPham;
@@ -80,8 +86,8 @@ public class SanPham extends PhanTu {
         System.out.print("Nhap so luong: ");
         soLuong = Integer.parseInt(sc.nextLine());
     }
-    public void setSoLuong(String soLuong) {
-        this.soLuong = Integer.parseInt(soLuong);
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public int getGia() {
@@ -115,23 +121,27 @@ public class SanPham extends PhanTu {
         System.out.println("Noi san xuat: " + noiSanXuat);
         System.out.println("So luong: " + soLuong);
         System.out.println("Gia: " + gia);
+        System.out.println("**************************");
     }    
 
     @Override
     public void suaThongTin() {
-        System.out.println("=== Sua thông tin sản phẩm ===");
+        System.out.println("=== Sua thong tin san pham ===");
         System.out.println("1. Sua ma san pham");
         System.out.println("2. Sua ten san pham");
         System.out.println("3. Sua thuong hieu");
         System.out.println("4. Sua noi san xuat");
         System.out.println("5. Sua so luong");
         System.out.println("6. Sua gia");
+        System.out.println("0. Quay ve menu quan ly san pham");
         System.out.println("===============================");
         int chon;
         do {
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
+                case 0:
+                    break;
                 case 1:
                     System.out.println("Thong tin hien tai: "+getMaSanPham());
                     setMaSanPham();
@@ -157,10 +167,9 @@ public class SanPham extends PhanTu {
                     setGia();
                     break;
                 default:
-                    chon = 0;
+                    System.out.println("Hay chon lai!");
                     break;
             }
-            if (chon==0) System.out.println("Hay chon lai!");
-        } while(chon==0);
+        } while(chon!=0);
     }
 }

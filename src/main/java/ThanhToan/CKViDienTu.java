@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ThanhToan;
-
-import java.util.Scanner;
+import static ThanhToan.ThanhToan.sc;
 
 public class CKViDienTu {
     private String tenVi;
     private String soDienThoaiLienKet;
-    Scanner sc = new Scanner(System.in);
     public CKViDienTu() {
     }
 
@@ -31,17 +25,21 @@ public class CKViDienTu {
         return tenVi;
     }
 
+    public void setTenVi(String tenVi) {
+        this.tenVi = tenVi;
+    }
+
     public void setTenVi() {
         int chon = 0;
         do {
             System.out.println("1. ZaloPay");
             System.out.println("2. Momo");
             System.out.println("3. VNPay");
-            System.out.print("Chọn loại ví: ");
+            System.out.print("Chon loai ví: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1:
-                    tenVi = "Zalo Pay";                
+                    tenVi = "ZaloPay";                
                     break;
                 case 2:
                     tenVi = "Momo";                
@@ -54,7 +52,7 @@ public class CKViDienTu {
                     break;
             }
             if (chon == 0){
-                System.out.println("Mời chọn lại tên ví.");
+                System.out.println("Moi chon lai!");
             }
         } while(chon == 0);
     }
@@ -63,10 +61,14 @@ public class CKViDienTu {
         return soDienThoaiLienKet;
     }
 
+    public void setSoDienThoaiLienKet(String soDienThoaiLienKet) {
+        this.soDienThoaiLienKet = soDienThoaiLienKet;
+    }
+
     public void setSoDienThoaiLienKet() {
         boolean check = true;
         do {
-            System.out.print("Mời nhâp số điện thoại liên kết của ví: ");
+            System.out.print("Moi nhap so dien thoai lien ket cua vi: ");
             soDienThoaiLienKet = sc.nextLine();
             if(soDienThoaiLienKet.length() != 10){
                 check = false;
@@ -78,11 +80,17 @@ public class CKViDienTu {
                     break;
                 }
             }
+            if (!check) System.out.println("Moi nhap lai!");
         } while(!check);
     }
     
     public void nhapThongTin(){
         setTenVi();
         setSoDienThoaiLienKet();
+    }
+    
+    public void xuat() {
+        System.out.println("Ten vi: "+tenVi);
+        System.out.println("So dien thoai lien ket: "+soDienThoaiLienKet);
     }
 }

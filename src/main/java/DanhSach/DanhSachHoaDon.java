@@ -1,59 +1,136 @@
 package DanhSach;
-import HangHoa.HoaDon;
-import HangHoa.PhanTu;
-import java.util.Scanner;
-
+import File.FileHandler;
+import HangHoa.*;
+import Nguoi.*;
 
 public class DanhSachHoaDon implements ThaoTacDanhSach {
-    private int soLuong = 0;
-    private static PhanTu[] dsHoaDon;
-    Scanner sc = new Scanner(System.in);
+    private int soLuong;
+    private HoaDon[] dsHoaDon;
     
     public DanhSachHoaDon() {
-        
+        dsHoaDon = getdsHoaDon();
     }
     
     public int getsoLuong(){
         return soLuong;
     }
     
-    public void setsoLuong(int soLuong){
+    public void setSoLuong(int soLuong){
         this.soLuong = soLuong;
     }
     
-    public static HoaDon[] getdsHoaDon() {
-        return (HoaDon[]) dsHoaDon;
+    public HoaDon[] getdsHoaDon() { // đọc từ file
+        String data = FileHandler.docFile("dshd.txt");
+        // tách thành mảng các phần tử chuỗi
+        String[] dArr = data.split("\n");
+        
+        // nếu file rỗng
+        if (dArr[0].length() == 0) setSoLuong(0);
+        else setSoLuong(Integer.parseInt(dArr[0]));
+        
+        dsHoaDon = new HoaDon[soLuong];
+        HoaDon hd;
+        SanPham sp;
+        SanPham[] dssp;
+        int i=1, k = 0, slsp=0;
+        // khởi tạo các đối tượng từ các class danh sách trung tâm
+        DanhSachKhachHang ttdskh = new DanhSachKhachHang();
+        DanhSachNhanVien ttdsnv = new DanhSachNhanVien();
+        DanhSachSanPham ttdssp = new DanhSachSanPham();
+        
+        while(i<dArr.length)
+        {
+            hd = new HoaDon();
+            
+            hd.setSoHoaDon(Integer.parseInt(dArr[i++]));
+            
+            slsp = Integer.parseInt(dArr[i++]);
+            
+            hd.setSoLuongSanPham(slsp);
+            
+            hd.setTongTien(Integer.parseInt(dArr[i++]));
+            
+            hd.setKhachHang((KhachHang) ttdskh.layPhanTuVoi(dArr[i++]));
+            
+            hd.setThuNgan((NhanVien) ttdsnv.layPhanTuVoi(dArr[i++]));
+            
+            hd.setPhThThanhToan(dArr[i++]);
+            
+            // đọc danh sách sản phẩm
+            dssp = new SanPham[slsp];
+            for(int j=0;j<slsp;j++) {
+                sp = (SanPham) ttdssp.layPhanTuVoi(dArr[i++]);
+                sp.setSoLuong(Integer.parseInt(dArr[i++]));
+                dssp[j] = sp;
+            }
+            
+            hd.setDsSanPham(dssp);
+            dsHoaDon[k++] = hd;
+        }
+        return dsHoaDon;
     }
     
-    public void setdsHoaDon(PhanTu[] dsHoaDon){
-        this.dsHoaDon = dsHoaDon;
+    public void setdsHoaDon(PhanTu[] dsHoaDon){ // ghi file
+        HoaDon hd;
+        String tenFile = "dshd.txt";
+        FileHandler.resetFile(tenFile);
+        FileHandler.ghiFile(soLuong+"", tenFile);
+        SanPham[] dssp;
+        
+        for(int i=0;i<soLuong;i++) {
+            // đọc từng phần tử từ mảng dsHoaDon
+            hd = (HoaDon) dsHoaDon[i];
+            // khởi tạo dssp và đọc từng phần tử của danh sách
+            dssp = new SanPham[hd.getSoLuongSanPham()];
+            for(int j=0;j<dssp.length;j++) {
+                dssp[j] = (SanPham) hd.getDsSanPham()[j];
+            }
+            FileHandler.themHd(hd.getSoHoaDon(),hd.getSoLuongSanPham(), hd.getTongTien(),
+                    hd.getKhachHang().getMaKhachHang(),
+                    hd.getThuNgan().getMaNhanVien(), hd.getPhThThanhToan(), dssp);
+        }
+        this.dsHoaDon = (HoaDon[])dsHoaDon;
     }
 
     @Override
     public void nhapDanhSach() {
         System.out.println("Moi nhap so luong hoa don:");
-        soLuong = sc.nextInt();
+        
+        soLuong = Integer.parseInt(sc.nextLine());
+        
         dsHoaDon = new HoaDon[soLuong];
-        for(int i=0;i<soLuong;i++){
+        
+        int stt, soLuongTemp=0, soLuongCurrent = soLuong;;
+        
+        for(int i=0;i<soLuongCurrent;i++){
             dsHoaDon[i] = new HoaDon();
+            stt = i+1;
+            System.out.println("** Hoa don thu "+stt+" **");
+            
             dsHoaDon[i].nhap();
+            soLuong = ++soLuongTemp;
+            setdsHoaDon(dsHoaDon);
         }
     }
 
     @Override
     public void xuatDanhSach() {
-        System.out.println("Danh sach hoa don: ");
+        System.out.println("=== Danh sach hoa don ===");
         for(int i=0;i<soLuong;i++) {
             dsHoaDon[i].xuat();
         }
+        System.out.println();
     }
 
     @Override
     public void themVaoDanhSach(PhanTu pt) {
-        PhanTu[] dsHoaDonTemp = new PhanTu[soLuong+1];
+        HoaDon[] dsHoaDonTemp = new HoaDon[soLuong+1];
+        
         for(int i=0;i<soLuong;i++)
             dsHoaDonTemp[i] = dsHoaDon[i];
-        dsHoaDonTemp[soLuong] = pt;
+        dsHoaDonTemp[soLuong] = (HoaDon) pt;
+        
+        soLuong++;
         setdsHoaDon(dsHoaDonTemp);
     }
 
@@ -74,32 +151,47 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
     public void chinhSuaThongTinPhanTu() {
         System.out.println("Tim hoa don can chinh sua: ");
         int viTri = timViTriPhanTu();
-        if (viTri != -1) dsHoaDon[viTri].suaThongTin();
+        
+        HoaDon[] dsHd = getdsHoaDon();
+        
+        if (viTri != -1) {
+            dsHd[viTri].suaThongTin();
+            setdsHoaDon(dsHd);
+        } else System.out.println("Khong tim thay!");
     }
 
     @Override
     public void xoaPhanTu() {
         System.out.println("Tim hoa don can xoa: ");
+        
         int viTri = timViTriPhanTu();
+        
         if (viTri != -1) {
-            PhanTu[] dsHoaDonTemp = new PhanTu[soLuong-1];
+            
+            HoaDon[] dsHoaDonTemp = new HoaDon[soLuong-1];
+            
             for(int i=0, k=0;i<soLuong;i++) {
-                if (i==viTri) continue;
+                if (i==viTri) continue; // bỏ phần tử
                 dsHoaDonTemp[k++] = dsHoaDon[i];
             }
+            
+            soLuong--;
             setdsHoaDon(dsHoaDonTemp);
         } else System.out.println("Khong tim thay san pham!");
     }
 
     @Override
-    public PhanTu timPhanTu() {
+    public PhanTu timPhanTu() { // tìm hoá đơn theo tên hoặc khoá (tương đối || tuyệt đối)
         System.out.print("Nhap so hoa don can tim: ");
         int soHoaDonCanTim = Integer.parseInt(sc.nextLine());
+        
         HoaDon[] dsHoaDonTmp = getdsHoaDon();
+        
         for(int i=0;i<soLuong;i++) {
             if (dsHoaDonTmp[i].getSoHoaDon() == soHoaDonCanTim)
                 return dsHoaDonTmp[i];
         }
+        
         return null;
     }
     
@@ -107,7 +199,9 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
     public int timViTriPhanTu() {
         System.out.print("Nhap so hoa don can tim: ");
         int soHoaDonCanTim = Integer.parseInt(sc.nextLine());
+        
         HoaDon[] dsHoaDonTmp = getdsHoaDon();
+        
         for(int i=0;i<soLuong;i++) {
             if (dsHoaDonTmp[i].getSoHoaDon() == soHoaDonCanTim)
                 return i;
@@ -118,6 +212,7 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
     @Override
     public PhanTu layPhanTuVoi(String thamSo) {
         HoaDon[] dsHoaDonTmp = getdsHoaDon();
+        
         for(int i=0;i<soLuong;i++) {
             if (dsHoaDonTmp[i].getSoHoaDon() == Integer.parseInt(thamSo))
                 return dsHoaDonTmp[i];

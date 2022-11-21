@@ -1,15 +1,9 @@
 package HangHoa;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import java.util.Scanner;
 
-/**
- *
- * @author Admin
- */
 public abstract class PhanTu {
+    public static Scanner sc = new Scanner(System.in);
     public abstract void nhap();
     public abstract void xuat();
     public abstract void suaThongTin();
