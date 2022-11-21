@@ -79,7 +79,7 @@ public class KhachHang extends Nguoi {
         System.out.println("===============================");
         int chon;
         do {
-            System.out.print("Nhập lựa chon: ");
+            System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1:
