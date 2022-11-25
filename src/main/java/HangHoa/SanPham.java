@@ -115,13 +115,7 @@ public class SanPham extends PhanTu {
 
     @Override
     public void xuat() {
-        System.out.println("Ma san pham: " + maSanPham);
-        System.out.println("Ten san pham: " + tenSanPham);
-        System.out.println("Thuong hieu: " + thuonghieu);
-        System.out.println("Noi san xuat: " + noiSanXuat);
-        System.out.println("So luong: " + soLuong);
-        System.out.println("Gia: " + gia);
-        System.out.println("**************************");
+        System.out.printf("%-20s %-50s %-20s %-20s %-20s %-20s \n",maSanPham,tenSanPham,thuonghieu,noiSanXuat,soLuong,gia);
     }    
 
     @Override

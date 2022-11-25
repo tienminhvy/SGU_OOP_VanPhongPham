@@ -184,13 +184,11 @@ public class DanhMucSanPham extends PhanTu {
 
     @Override
     public void xuat() {
-        System.out.println("Ma danh muc: " + maDanhMuc);
+        System.out.printf("%-20s %-20s %-20s \n", "Ma danh muc", "Ten danh muc", "So luong");
+        System.out.printf("%-20s %-20s %-20s \n", maDanhMuc, tenDanhMuc, soLuong);
         
-        System.out.println("Ten danh muc: " + tenDanhMuc);
-        
-        System.out.println("So luong: " + soLuong);
-        
-        System.out.println("Danh sách san pham cung danh muc: ");
+        System.out.println("Danh sach san pham cung danh muc: ");
+        System.out.printf("%-20s %-50s %-20s %-20s %-20s %-20s \n","Ma san pham", "Ten san pham", "Thuong hieu", "Noi san xuat", "So luong", "Gia");
         PhanTu pt;
         DanhSachSanPham ttds = new DanhSachSanPham();
         

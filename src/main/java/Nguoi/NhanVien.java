@@ -223,15 +223,11 @@ public class NhanVien extends Nguoi{
 
     @Override
     public void xuat() {
-        System.out.println("Ma nhan vien: "+getMaNhanVien());
+        System.out.printf("%-25s %-25s %-20s %-50s %-20s ", "Ma nhan vien", "Ho ten", "CMND/CCCD", "Dia chi", "SDT");
+        System.out.printf("%-25s ",getMaNhanVien());
         super.xuat();
-        System.out.println("Ngay vao lam: "+getNgayVaoLam());
-        System.out.println("He so luong: "+getHeSoLuong());
-        System.out.println("So ngay nghi trong thang: "+getSoNgayNghiTrongThang());
-        System.out.println("Luong: "+getLuong());
-        System.out.println("Thuong: "+getThuong());
-        System.out.println("Hang: "+getHang());
-        System.out.println("**************************");
+        System.out.printf("\n%-25s %-25s %-30s %-10s %-10s %-10s\n", "Ngay vao lam", "He so luong", "So ngay nghi trong thang", "Luong", "Thuong", "Hang");
+        System.out.printf("\n%-25s %-25s %-30s %-10s %-10s %-10s\n", getNgayVaoLam(), getHeSoLuong(), getSoNgayNghiTrongThang(), getLuong(), getThuong(), getHang());
     }
     
     public static void xuat(NhanVien nv) {

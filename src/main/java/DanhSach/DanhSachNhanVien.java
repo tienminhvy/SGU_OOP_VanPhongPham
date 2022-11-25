@@ -37,27 +37,32 @@ public class DanhSachNhanVien implements ThaoTacDanhSach {
         
         dsNhanVien = new NhanVien[soLuong];
         NhanVien nv;
-        int i=1, k = 0;
+        int k = 0, m;
+
+        String []lArr;
         
-        while(i<dArr.length)
-        {
+        for (int i = 1; i < dArr.length; i++) {
+            lArr = dArr[i].split("#");
+
+            m = 0;
+
             nv = new NhanVien();
             
-            nv.setMaNhanVien(Integer.parseInt(dArr[i++]));
+            nv.setMaNhanVien(Integer.parseInt(lArr[m++]));
             
-            nv.setHoTen(dArr[i++]);
+            nv.setHoTen(lArr[m++]);
             
-            nv.setCmt(dArr[i++]);
+            nv.setCmt(lArr[m++]);
             
-            nv.setDiaChi(dArr[i++]);
+            nv.setDiaChi(lArr[m++]);
             
-            nv.setSoDienThoai(dArr[i++]);
+            nv.setSoDienThoai(lArr[m++]);
             
-            nv.setNgayVaoLam(dArr[i++]);
+            nv.setNgayVaoLam(lArr[m++]);
             
-            nv.setHeSoLuong(Double.parseDouble(dArr[i++]));
+            nv.setHeSoLuong(Double.parseDouble(lArr[m++]));
             
-            nv.setSoNgayNghiTrongThang(Integer.parseInt(dArr[i++]));
+            nv.setSoNgayNghiTrongThang(Integer.parseInt(lArr[m++]));
             
             dsNhanVien[k++] = nv;
         }
@@ -247,7 +252,7 @@ public class DanhSachNhanVien implements ThaoTacDanhSach {
                         return i;
             }
         }
-        return -1;
+    return -1;
     }
 
     @Override
@@ -262,11 +267,6 @@ public class DanhSachNhanVien implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
-    }
-
-    @Override
-    public void tongSL() {
     
     }
 }

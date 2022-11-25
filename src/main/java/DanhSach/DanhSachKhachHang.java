@@ -42,61 +42,65 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
         KhachHang kh;
         ThanhToan pttt; CKNganHang cknh; CKTinDung cktd; CKViDienTu ckvdt;
         
-        int i=1, k = 0;
-        while(i<dArr.length)
-        {
+        String lArr[];
+        int k = 0, m;
+        
+        for (int i = 1; i < dArr.length; i++) { // ứng với mỗi dòng
+            lArr = dArr[i].split("#");
+            m = 0;
+
             kh = new KhachHang();
             
-            kh.setMaKhachHang(Integer.parseInt(dArr[i++]));
+            kh.setMaKhachHang(Integer.parseInt(lArr[m++]));
             
-            kh.setHoTen(dArr[i++]);
+            kh.setHoTen(lArr[m++]);
             
-            kh.setCmt(dArr[i++]);
+            kh.setCmt(lArr[m++]);
             
-            kh.setDiaChi(dArr[i++]);
+            kh.setDiaChi(lArr[m++]);
             
-            kh.setSoDienThoai(dArr[i++]);
+            kh.setSoDienThoai(lArr[m++]);
             
-            kh.setSoDonHangDaThanhToan(Integer.parseInt(dArr[i++]));
+            kh.setSoDonHangDaThanhToan(Integer.parseInt(lArr[m++]));
             
-            kh.setTongTienDaThanhToan(Integer.parseInt(dArr[i++]));
+            kh.setTongTienDaThanhToan(Integer.parseInt(lArr[m++]));
             
             // ghi phương thức thanh toán
-            // !dArr[i].equals(" ") => nếu dòng khác " " (đã thiết lập phương thức thanh toán)
+            // !lArr[m].equals(" ") => nếu dòng khác " " (đã thiết lập phương thức thanh toán)
             pttt = new ThanhToan();
-            pttt.setPhuongThucThanhToan(dArr[i++]);
+            pttt.setPhuongThucThanhToan(lArr[m++]);
             // phương thức ngân hàng
-            if (!dArr[i].equals(" ")) {
+            if (!lArr[m].equals(" ")) {
                 cknh = new CKNganHang();
                 
-                cknh.setSoTheTk(dArr[i++]);
+                cknh.setSoTheTk(lArr[m++]);
                 
-                cknh.setCVV(Integer.parseInt(dArr[i++]));
+                cknh.setCVV(Integer.parseInt(lArr[m++]));
                 
                 pttt.setPTNganHang(cknh);
             } else i+=2; // bỏ qua 2 dòng
             // phương thức tín dụng
-            if (!dArr[i].equals(" ")) {
+            if (!lArr[m].equals(" ")) {
                 cktd = new CKTinDung();
                 
-                cktd.setSoThe(dArr[i++]);
+                cktd.setSoThe(lArr[m++]);
                 
-                cktd.setCVV(Integer.parseInt(dArr[i++]));
+                cktd.setCVV(Integer.parseInt(lArr[m++]));
                 
                 pttt.setPTTinDung(cktd);
             } else i+=3;
             // phương thức ví điện tử
-            if (!dArr[i].equals(" ")) {
+            if (!lArr[m].equals(" ")) {
                 ckvdt = new CKViDienTu();
                 
-                ckvdt.setSoDienThoaiLienKet(dArr[i++]);
+                ckvdt.setSoDienThoaiLienKet(lArr[m++]);
                 
-                ckvdt.setTenVi(dArr[i++]);
+                ckvdt.setTenVi(lArr[m++]);
                 
                 pttt.setPTViDienTu(ckvdt);
             } else i+=2;
             kh.setPhThThanhToan(pttt);
-            if (k<soLuong) dsKhachHang[k++] = kh;
+            dsKhachHang[k++] = kh;
         }
         return dsKhachHang;
     }
@@ -140,6 +144,8 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
     @Override    
     public void xuatDanhSach(){
         System.out.println("=== Danh sach khach hang ===");
+        System.out.printf("%-25s %-25s %-20s %-50s %-20s\n", "Ma khach hang", "Ho ten", "CMND/CCCD", "Dia chi", "SDT");
+        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s\n");
         for (int i = 0; i<soLuong; i++){
             getDsKhachHang()[i].xuat();
         }
@@ -309,11 +315,6 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
-    }
-
-    @Override
-    public void tongSL() {
     
     }
 }

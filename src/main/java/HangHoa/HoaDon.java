@@ -311,13 +311,9 @@ public class HoaDon extends PhanTu {
 
     @Override
     public void xuat() {
-        System.out.println("So hoa Don: " + soHoaDon);
-        System.out.println("So luong san pham: " + soLuongSanPham);
-        System.out.println("Tong Tien:" + tongTien);
-        System.out.println("Ten khach hang: " + khachHang.getHoTen());
-        System.out.println("Ten thu ngan: " + thuNgan.getHoTen());
-        System.out.println("Phuong thuc thanh toan: " + phThThanhToan);
+        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s \n", soHoaDon, soLuongSanPham, tongTien, khachHang.getHoTen(), thuNgan.getHoTen(), phThThanhToan);
         System.out.println("Danh sach san pham: ");
+        System.out.printf("%-20s %-50s %-20s %-20s %-20s %-20s \n","Ma san pham", "Ten san pham", "Thuong hieu", "Noi san xuat", "So luong", "Gia");
         for(int i=0;i<dsSanPham.length;i++)
             dsSanPham[i].xuat();
         System.out.println("**************************");

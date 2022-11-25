@@ -22,87 +22,68 @@ public class FileHandler {
     
     // thêm sản phẩm vào file dssp.txt
     public static void themSP(String masp, String tensp, String thuongHieu, String noiSx, int sl, int gia) {
-        ghiFile(masp, "dssp.txt");
-        ghiFile(tensp, "dssp.txt");
-        ghiFile(thuongHieu, "dssp.txt");
-        ghiFile(noiSx, "dssp.txt");
-        ghiFile(sl+"", "dssp.txt");
-        ghiFile(gia+"", "dssp.txt");
+        String tmp = masp+"#"+tensp+"#"+thuongHieu+"#"+noiSx+"#"+sl+"#"+gia;
+        ghiFile(tmp, "dssp.txt");
     }
     // thêm nhân viên vào file dsnv.txt
     public static void themNv(int manv, String hoten, String cmt, String diachi, String sdt,
         String ngayVaoLam, double heSoLuong, int soNgayNghiTrongThang) {
-        ghiFile(manv+"", "dsnv.txt");
-        ghiFile(hoten, "dsnv.txt");
-        ghiFile(cmt, "dsnv.txt");
-        ghiFile(diachi, "dsnv.txt");
-        ghiFile(sdt, "dsnv.txt");
-        ghiFile(ngayVaoLam, "dsnv.txt");
-        ghiFile(heSoLuong+"", "dsnv.txt");
-        ghiFile(soNgayNghiTrongThang+"", "dsnv.txt");
+        String tmp = manv+"#"+hoten+"#"+cmt+"#"+diachi+"#"+sdt+"#"+ngayVaoLam+"#"+heSoLuong+"#"+soNgayNghiTrongThang;
+        ghiFile(tmp, "dsnv.txt");
     }
     // thêm khách hàng vào file dskh.txt
     public static void themKh(int makh, String hoten, String cmt, String diachi, String sdt,
         int soDonHangDaThanhToan, int tongTienDaThanhToan, ThanhToan phThThanhToan) {
-        ghiFile(makh+"", "dskh.txt");
-        ghiFile(hoten, "dskh.txt");
-        ghiFile(cmt, "dskh.txt");
-        ghiFile(diachi, "dskh.txt");
-        ghiFile(sdt, "dskh.txt");
-        ghiFile(soDonHangDaThanhToan+"", "dskh.txt");
-        ghiFile(tongTienDaThanhToan+"", "dskh.txt");
+        String tmp = makh+"#"+hoten+"#"+cmt+"#"+diachi+"#"+sdt+"#"+soDonHangDaThanhToan+"#"+tongTienDaThanhToan+"#";
         if (phThThanhToan != null) {
-            ghiFile(phThThanhToan.getPhuongThucThanhToan(), "dskh.txt");
-            
+            tmp+=phThThanhToan.getPhuongThucThanhToan()+"#";
+            // -># # # # # # # #
             // ghi phương thức ngân hàng
             if (phThThanhToan.getPTNganHang() != null) {
-                ghiFile(phThThanhToan.getPTNganHang().getSoTheTk(), "dskh.txt");
-                ghiFile(phThThanhToan.getPTNganHang().getCVV()+"", "dskh.txt");
-            } else for(int i=0;i<2;i++)
-                ghiFile(" \n", "dskh.txt");
+                tmp+=phThThanhToan.getPTNganHang().getSoTheTk()+"#"+phThThanhToan.getPTNganHang().getCVV()+"#";
+            } else for(int i=0;i<2;i++) tmp+=" #";
             
             // ghi phương thức tín dụng
             if (phThThanhToan.getPTTinDung()!= null) {
-                ghiFile(phThThanhToan.getPTTinDung().getSoThe(), "dskh.txt");
-                ghiFile(phThThanhToan.getPTTinDung().getLoaiThe(), "dskh.txt");
-                ghiFile(phThThanhToan.getPTTinDung().getCVV()+"", "dskh.txt");
-            } else for(int i=0;i<3;i++)
-                ghiFile(" \n", "dskh.txt");
+                tmp+=phThThanhToan.getPTTinDung().getSoThe()+"#"
+                +phThThanhToan.getPTTinDung().getLoaiThe()+"#"
+                +phThThanhToan.getPTTinDung().getCVV()+"#";
+            } else for(int i=0;i<3;i++) tmp+=" #";
             
             // ghi phương thức ví điện tử
             if (phThThanhToan.getPTViDienTu()!= null) {
-                ghiFile(phThThanhToan.getPTViDienTu().getSoDienThoaiLienKet(), "dskh.txt");
-                ghiFile(phThThanhToan.getPTViDienTu().getTenVi(), "dskh.txt");
-            } else for(int i=0;i<2;i++)
-                ghiFile(" \n", "dskh.txt");
+                tmp+=phThThanhToan.getPTViDienTu().getSoDienThoaiLienKet()+"#"+phThThanhToan.getPTViDienTu().getTenVi();
+            } else {
+                tmp+=" # ";
+            }
         } else {
-            ghiFile("TienMat", "dskh.txt");
+            tmp+="TienMat#";
             for(int i=0;i<7;i++)
-                ghiFile(" \n", "dskh.txt");
+                if (i!=6) tmp+=" #";
+                else tmp+=" ";
         }
+        ghiFile(tmp, "dskh.txt");
     }
     // thêm danh mục sản phẩm vào file dsdmsp.txt
     public static void themDmSP(String maDanhMuc, String tenDanhMuc, int soLuong, String[] dsMaSanPham) {
-        ghiFile(maDanhMuc, "dsdmsp.txt");
-        ghiFile(tenDanhMuc, "dsdmsp.txt");
-        ghiFile(soLuong+"", "dsdmsp.txt");
+        String tmp = maDanhMuc+"#"+tenDanhMuc+"#"+soLuong+"#";
+        
         for(int i=0;i<dsMaSanPham.length;i++)
-            ghiFile(dsMaSanPham[i], "dsdmsp.txt");
+            if (i!=dsMaSanPham.length-1)
+                tmp += dsMaSanPham[i]+"#";
+            else tmp += dsMaSanPham[i];
+        ghiFile(tmp, "dsdmsp.txt");
     }
     // thêm hoá đơn vào file dshd.txt
     public static void themHd(int soHoaDon, int soLuongSanPham, int tongTien, int maKhachHang, 
-            int maThuNgan, String phThThanhToan, SanPham[] dssp) {
-        ghiFile(soHoaDon+"", "dshd.txt");
-        ghiFile(soLuongSanPham+"", "dshd.txt");
-        ghiFile(tongTien+"", "dshd.txt");
-        ghiFile(maKhachHang+"", "dshd.txt");
-        ghiFile(maThuNgan+"", "dshd.txt");
-        ghiFile(phThThanhToan+"", "dshd.txt");
+        int maThuNgan, String phThThanhToan, SanPham[] dssp) {
+        String tmp = soHoaDon+"#"+soLuongSanPham+"#"+tongTien+"#"+maKhachHang+"#"+maThuNgan+"#"+phThThanhToan+"#";
+        
         for(int i=0;i<dssp.length;i++)
         {
-            ghiFile(dssp[i].getMaSanPham(), "dshd.txt");
-            ghiFile(dssp[i].getSoLuong()+"", "dshd.txt");
+            tmp+=dssp[i].getMaSanPham()+"#"+dssp[i].getSoLuong();
         }
+        ghiFile(tmp, "dshd.txt");
     }
     
     // hàm khởi tạo các file
@@ -206,7 +187,7 @@ public class FileHandler {
             
             while(fr.hasNextLine())
                 data += fr.nextLine() + "\n";
-            
+
             FileWriter fw = new FileWriter(tenFile);
             
             fw.write(data+giaTri);

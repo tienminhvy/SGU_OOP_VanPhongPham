@@ -32,35 +32,39 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
         HoaDon hd;
         SanPham sp;
         SanPham[] dssp;
-        int i=1, k = 0, slsp=0;
+        String[] lArr;
+        int k = 0, m, slsp=0;
         // khởi tạo các đối tượng từ các class danh sách trung tâm
         DanhSachKhachHang ttdskh = new DanhSachKhachHang();
         DanhSachNhanVien ttdsnv = new DanhSachNhanVien();
         DanhSachSanPham ttdssp = new DanhSachSanPham();
         
-        while(i<dArr.length)
-        {
+        for (int i = 1; i < dArr.length; i++) {
+            lArr = dArr[i].split("#");
+
             hd = new HoaDon();
             
-            hd.setSoHoaDon(Integer.parseInt(dArr[i++]));
+            m = 0;
+
+            hd.setSoHoaDon(Integer.parseInt(lArr[m++]));
             
-            slsp = Integer.parseInt(dArr[i++]);
+            slsp = Integer.parseInt(lArr[m++]);
             
             hd.setSoLuongSanPham(slsp);
             
-            hd.setTongTien(Integer.parseInt(dArr[i++]));
+            hd.setTongTien(Integer.parseInt(lArr[m++]));
             
-            hd.setKhachHang((KhachHang) ttdskh.layPhanTuVoi(dArr[i++]));
+            hd.setKhachHang((KhachHang) ttdskh.layPhanTuVoi(lArr[m++]));
             
-            hd.setThuNgan((NhanVien) ttdsnv.layPhanTuVoi(dArr[i++]));
+            hd.setThuNgan((NhanVien) ttdsnv.layPhanTuVoi(lArr[m++]));
             
-            hd.setPhThThanhToan(dArr[i++]);
+            hd.setPhThThanhToan(lArr[m++]);
             
             // đọc danh sách sản phẩm
             dssp = new SanPham[slsp];
             for(int j=0;j<slsp;j++) {
-                sp = (SanPham) ttdssp.layPhanTuVoi(dArr[i++]);
-                sp.setSoLuong(Integer.parseInt(dArr[i++]));
+                sp = (SanPham) ttdssp.layPhanTuVoi(lArr[m++]);
+                sp.setSoLuong(Integer.parseInt(lArr[m++]));
                 dssp[j] = sp;
             }
             
@@ -116,6 +120,7 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
     @Override
     public void xuatDanhSach() {
         System.out.println("=== Danh sach hoa don ===");
+        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s\n", "So hoa don", "So luong san pham", "Tong tien", "Ten khach hang", "Ten thu ngan", "Phuong thuc thanh toan");
         for(int i=0;i<soLuong;i++) {
             dsHoaDon[i].xuat();
         }
@@ -222,11 +227,6 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
-    }
-
-    @Override
-    public void tongSL() {
     
     }
 }

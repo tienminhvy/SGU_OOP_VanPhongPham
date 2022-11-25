@@ -17,6 +17,5 @@ interface ThaoTacDanhSach {
     public int timViTriPhanTu();
     public PhanTu layPhanTuVoi(String thamSo);
     public void thongKe();
-    public void tongSL();
 }
 
