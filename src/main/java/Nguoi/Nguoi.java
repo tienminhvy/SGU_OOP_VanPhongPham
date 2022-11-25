@@ -103,10 +103,7 @@ public abstract class Nguoi extends PhanTu {
     }
     
     public void xuat() {
-        System.out.println("Ho ten: "+getHoTen());
-        System.out.println("Chung minh nhan dan/Can cuoc cong dan: "+getCmt());
-        System.out.println("Dia chi: "+getDiaChi());
-        System.out.println("So dien thoai: "+getSoDienThoai());
+        System.out.printf("%-25s %-20s %-50s %-20s ", getHoTen(), getCmt(), getDiaChi(), getSoDienThoai());
     }
     
     public abstract void suaThongTin();

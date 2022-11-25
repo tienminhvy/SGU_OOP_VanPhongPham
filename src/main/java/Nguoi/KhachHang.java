@@ -94,10 +94,11 @@ public class KhachHang extends Nguoi {
 
     @Override
     public void xuat() {
-        System.out.println("Ma khach hang: "+getMaKhachHang());
+        System.out.printf("%-25s", getMaKhachHang());
+        System.out.printf("%-25s %-20s %-50s %-20s", getMaKhachHang());
+        System.out.println();
         super.xuat();
         if (phThThanhToan != null) phThThanhToan.xuat();
-        System.out.println("**************************");
     }
     
     public static void xuat(KhachHang kh) {

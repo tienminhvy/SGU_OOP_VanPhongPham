@@ -235,6 +235,7 @@ public class XuLy {
         int chon;
         do {
             chon = Integer.parseInt(sc.nextLine());
+            // chỉ cho phép thao tác nếu đã có danh sách sản phẩm
             if (dssp.getsoLuong() == 0) {
                 System.out.println("Vui long nhap danh sach san pham truoc khi quan ly hoa don!");
                 chon = 0;

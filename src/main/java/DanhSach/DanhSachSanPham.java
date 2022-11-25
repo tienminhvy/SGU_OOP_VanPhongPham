@@ -30,26 +30,31 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
         
         dsSanPham = new SanPham[soLuong];
         SanPham sp;
-        int i=1, k = 0;
-        
-        while(i<dArr.length)
-        {
+        int k = 0, m;
+        String []lArr;
+
+        for (int i = 1; i < dArr.length; i++) {
+            lArr = dArr[i].split("#");
+            
+            m = 0;
+
             sp = new SanPham();
             
-            sp.setMaSanPham(dArr[i++]);
+            sp.setMaSanPham(lArr[m++]);
             
-            sp.setTenSanPham(dArr[i++]);
+            sp.setTenSanPham(lArr[m++]);
             
-            sp.setThuonghieu(dArr[i++]);
+            sp.setThuonghieu(lArr[m++]);
             
-            sp.setNoiSanXuat(dArr[i++]);
+            sp.setNoiSanXuat(lArr[m++]);
             
-            sp.setSoLuong(Integer.parseInt(dArr[i++]));
+            sp.setSoLuong(Integer.parseInt(lArr[m++]));
             
-            sp.setGia(dArr[i++]);
+            sp.setGia(lArr[m++]);
             
-            if (k<soLuong) dsSanPham[k++] = sp;
+            dsSanPham[k++] = sp;
         }
+
         return dsSanPham;
     }
     
@@ -92,6 +97,7 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
     public void xuatDanhSach() {
         System.out.println();
         System.out.println("=== Danh sach san pham ===");
+        System.out.printf("%-20s %-50s %-20s %-20s %-20s %-20s \n","Ma san pham", "Ten san pham", "Thuong hieu", "Noi san xuat", "So luong", "Gia");
         for(int i=0;i<soLuong;i++) {
             dsSanPham[i].xuat();
         }
@@ -274,10 +280,5 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
                     break;
             }
         } while(chon==0);
-    }
-
-    @Override
-    public void tongSL() {
-    
     }
 }

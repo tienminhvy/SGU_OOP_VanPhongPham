@@ -1,6 +1,5 @@
 package ThanhToan;
 
-import ThanhToan.*;
 import java.util.Scanner;
 
 public class ThanhToan {

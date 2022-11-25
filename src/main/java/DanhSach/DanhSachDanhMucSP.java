@@ -44,23 +44,27 @@ public class DanhSachDanhMucSP implements ThaoTacDanhSach {
         
         dsDanhMucSP = new DanhMucSanPham[soLuong];
         DanhMucSanPham dmsp;
-        int i=1, k = 0, sldmsp;
+        int k = 0, m, sldmsp;
         String [] dsMaSP;
         
-        while(i<dArr.length)
-        { // ghi vào mảng
+        String[] lArr;
+        for (int i = 1; i < dArr.length; i++) {
+            lArr = dArr[i].split("#");
+
+            m = 0;
+
             dmsp = new DanhMucSanPham();
-            
-            dmsp.setMaDanhMuc(dArr[i++]);
-            dmsp.setTenDanhMuc(dArr[i++]);
-            
-            sldmsp = Integer.parseInt(dArr[i++]);
+
+            dmsp.setMaDanhMuc(lArr[m++]);
+            dmsp.setTenDanhMuc(lArr[m++]);
+
+            sldmsp = Integer.parseInt(lArr[m++]);
             dmsp.setSoLuong(sldmsp);
             
             dsMaSP = new String[sldmsp];
             
             for(int j=0;j<sldmsp;j++)
-                dsMaSP[j] = dArr[i++];
+                dsMaSP[j] = lArr[m++];
             
             dmsp.setDsMaSanPham(dsMaSP);
             
@@ -73,7 +77,7 @@ public class DanhSachDanhMucSP implements ThaoTacDanhSach {
         DanhMucSanPham dmsp;
         String tenFile = "dsdmsp.txt";
         FileHandler.resetFile(tenFile);
-        FileHandler.ghiFile(soLuong+"", tenFile);
+        FileHandler.ghiFile(soLuong+"\n", tenFile);
         for(int i=0;i<soLuong;i++) {
             dmsp = (DanhMucSanPham) dsDanhMucSP[i];
             FileHandler.themDmSP(dmsp.getMaDanhMuc(), dmsp.getTenDanhMuc(), dmsp.getSoLuong(), dmsp.getDsMaSanPham());
@@ -264,10 +268,4 @@ public class DanhSachDanhMucSP implements ThaoTacDanhSach {
     public void thongKe() {
     
     }
-
-    @Override
-    public void tongSL() {
-        
-    }
-    
 }
