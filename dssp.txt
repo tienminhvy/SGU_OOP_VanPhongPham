@@ -1,5 +1,5 @@
 20
-BB01#But bi#A#Viet Nam#1427#2800
+BB01#But bi#A#Viet Nam#1403#2800
 BB02#But bi#B#Viet Nam#623#2500
 BB03#But bi#C#Viet Nam#152#2300
 BB04#But bi#D#Viet Nam#254#2000
@@ -15,7 +15,7 @@ SACH01#Sach giao khoa Toan hoc lop 10 tap 1#NXBGDVN#Viet Nam#142#5200
 SACH02#Sach giao khoa Toan hoc lop 10 tap 2#NXBGDVN#Viet Nam#141#5100
 SACH03#Sach giao khoa Tin hoc lop 10 tap 1#NXBGDVN#Viet Nam#316#3200
 SACH04#Sach giao khoa Tin hoc lop 10 tap 2#NXBGDVN#Viet Nam#314#4800
-GI01#Giay in A4 loai tot#F#Viet Nam#142#85000
+GI01#Giay in A4 loai tot#F#Viet Nam#141#85000
 GI02#Giay in A4 loai thuong#G#Viet Nam#141#60000
 GI03#Giay in A3 loai tot#A#Viet Nam#316#96000
 GI04#Giay in A3 loai thuong#E#Viet Nam#314#80000

@@ -334,6 +334,7 @@ public class HoaDon extends PhanTu {
                     System.out.println("2. Tai khoan the tin dung");
                     System.out.println("3. Vi dien tu");
                     System.out.print("Chon: ");
+                    chon = Integer.parseInt(sc.nextLine());
                     switch (chon) {
                         case 1:
                             CKNganHang cknh = new CKNganHang();

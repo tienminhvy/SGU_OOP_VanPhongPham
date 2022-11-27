@@ -37,8 +37,9 @@ public class CKTinDung {
     }
 
     public void setSoThe() {
-        boolean check = true;
+        boolean check;
         do {
+            check = true;
             System.out.print("Nhap so the: ");
             soThe = sc.nextLine();
             if(soThe.length() == 16 ){
@@ -62,8 +63,9 @@ public class CKTinDung {
     }
 
     public void setCVV() {
-        boolean check = true;
+        boolean check;
         do {
+            check = true;
             System.out.print("Nhap so CVV/CVC: ");
             String CVVTemp = sc.nextLine();
             if(CVVTemp.length() == 3){

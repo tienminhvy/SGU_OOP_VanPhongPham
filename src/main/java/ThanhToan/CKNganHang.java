@@ -32,9 +32,10 @@ public class CKNganHang {
     }
 
     public void setSoTheTk() {
-        boolean check = true;
+        boolean check;
         do {
-            System.out.print("Nhap so the: ");
+            check = true;
+            System.out.print("Nhap so the/tai khoan: ");
             soTheTk = sc.nextLine();
             if(soTheTk.length() == 16 || soTheTk.length() == 19){ // kiểm tra số thẻ
                 for(int i = 0; i < soTheTk.length(); i++){
@@ -59,8 +60,9 @@ public class CKNganHang {
     }
 
     public void setCVV() {
-        boolean check = true;
+        boolean check;
         do {
+            check = true;
             System.out.print("Nhap so CVV/CVC: ");
             String CVVTemp = sc.nextLine();
             
@@ -69,6 +71,7 @@ public class CKNganHang {
                 for(int i = 0; i < CVVTemp.length(); i++){
                     if( !kiemTraSo(CVVTemp.charAt(i)) ) {
                         check = false;
+                        System.out.println("So CVV/CVC khong hop le!");
                         break;
                     }
                 }
@@ -82,9 +85,7 @@ public class CKNganHang {
     }
      
     public void nhapThongTin(){
-        System.out.print("Nhap so the/tai khoan: ");
         setSoTheTk();
-        System.out.print("Nhap CVV: ");
         setCVV();        
     }
     

@@ -145,7 +145,6 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
     public void xuatDanhSach(){
         System.out.println("=== Danh sach khach hang ===");
         System.out.printf("%-25s %-25s %-20s %-50s %-20s\n", "Ma khach hang", "Ho ten", "CMND/CCCD", "Dia chi", "SDT");
-        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s\n");
         for (int i = 0; i<soLuong; i++){
             getDsKhachHang()[i].xuat();
         }

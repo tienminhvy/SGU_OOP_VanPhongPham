@@ -256,13 +256,13 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
                     n = Integer.parseInt(sc.nextLine());
                     switch (n) {
                         case 2:
-                            st = "CKNganHang";
+                            st = "CK_NganHang";
                             break;
                         case 3:
-                            st = "CKTinDung";
+                            st = "CK_TinDung";
                             break;
                         case 4:
-                            st = "CKViDienTu";
+                            st = "CK_ViDienTu";
                             break;
                     
                         default:
