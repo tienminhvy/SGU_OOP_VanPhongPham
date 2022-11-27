@@ -1,6 +1,9 @@
 package HangHoa;
 import DanhSach.*;
 import Nguoi.*;
+import ThanhToan.CKNganHang;
+import ThanhToan.CKTinDung;
+import ThanhToan.CKViDienTu;
 import ThanhToan.ThanhToan;
 
 public class HoaDon extends PhanTu {
@@ -35,15 +38,33 @@ public class HoaDon extends PhanTu {
         DanhSachKhachHang ttds = new DanhSachKhachHang();
         PhanTu pt;
         String maKhachHang;
-        
+        int chon;
         do {
+            System.out.println("Ban co muon xuat ra man hinh danh sach khach hang khong? (1 - in, 0 - khong)");
+            chon = Integer.parseInt(sc.nextLine());
+            chon = (chon==0) ? 0 : 1;
+
+            if (chon == 1) ttds.xuatDanhSach();
+
             System.out.print("Nhap ma khach hang: ");
             maKhachHang = sc.nextLine();
             
             pt = ttds.layPhanTuVoi(maKhachHang);
             
-            if (pt == null) System.out.println("Khong tim thay khach hang!");
-            else khachHang = (KhachHang) pt;
+            if (pt == null) {
+                System.out.println("Khong tim thay khach hang!");
+                System.out.println("Ban co muon them khach hang moi khong? (1 - them, 0 - khong)");
+                chon = Integer.parseInt(sc.nextLine());
+                chon = (chon==0) ? 0 : 1;
+
+                if (chon == 1) {
+                    pt = new KhachHang();
+                    pt.nhap();
+                    ttds.themVaoDanhSach(pt);
+                    khachHang = (KhachHang) pt;
+                }
+
+            } else khachHang = (KhachHang) pt;
             
         } while(pt == null);
     }
@@ -191,7 +212,7 @@ public class HoaDon extends PhanTu {
     }
 
     public void setSoHoaDon() {
-        System.out.println("Nhap so hoa don:");
+        System.out.print("Nhap so hoa don: ");
         DanhSachHoaDon ttds = new DanhSachHoaDon();
         boolean check = false;
         do
@@ -215,7 +236,7 @@ public class HoaDon extends PhanTu {
     }
 
     public void setSoLuongSanPham() {
-        System.out.println("Nhap so luong san pham:");
+        System.out.print("Nhap so luong san pham: ");
         soLuongSanPham = Integer.parseInt(sc.nextLine());
     }
 
@@ -242,7 +263,10 @@ public class HoaDon extends PhanTu {
         System.out.println("3. Tai khoan the tin dung");
         System.out.println("4. Vi dien tu");
         System.out.print("Chon: ");
-        int chon;
+        int chon, chontl = 0;
+        // các biến lựa chọn
+        KhachHang[] dsKhachHang;
+
         do{
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
@@ -264,13 +288,13 @@ public class HoaDon extends PhanTu {
             }
             
             if(chon == 0)
-            {
+            { // nếu người dùng nhập số khác các số trên
                 System.out.print("Moi chon lai: ");
                 continue;
             }
             
             
-            if (chon == 1) break;
+            if (chon == 1) break; // ph thức tiền mặt
             
             // kiểm tra
             DanhSachKhachHang dskh = new DanhSachKhachHang();
@@ -278,25 +302,63 @@ public class HoaDon extends PhanTu {
             int maKH = getKhachHang().getMaKhachHang();
             int vtkh = dskh.timViTriKhachHang(maKH);
             
-            ThanhToan pttt = dskh.getDsKhachHang()[vtkh].getPhThThanhToan();
+            dsKhachHang = dskh.getDsKhachHang();
+
+            ThanhToan pttt = dsKhachHang[vtkh].getPhThThanhToan();
             
-            switch (chon) {
+            switch (chon) { // nếu chọn đúng phương thức
                 case 2:
-                    if (pttt.getPTNganHang() == null) chon = 0;
+                    if (pttt.getPTNganHang() == null) chontl = 1;
                     break;
                 case 3:
-                    if (pttt.getPTTinDung()== null) chon = 0;
+                    if (pttt.getPTTinDung()== null) chontl = 1;
                     break;
                 case 4:
-                    if (pttt.getPTViDienTu()== null) chon = 0;
+                    if (pttt.getPTViDienTu()== null) chontl = 1;
+                    break;
+                default:
+                    chontl = 1;
                     break;
             }
             
-            if (chon == 0) {
+            if (chontl == 1) {
                 System.out.println("Khach hang chua thiet lap phuong thuc thanh toan nay!");
-                System.out.print("Chon lai: ");
+
+                System.out.print("Ban co muon thiet lap phuong thuc thanh toan cho khach hang nay khong? (1 - co, 0 - khong): ");
+                chontl = Integer.parseInt(sc.nextLine());
+                chontl = (chontl == 1) ? 1 : 0;
+
+                if (chontl == 1) { // nếu chọn thiết lập
+                    System.out.println("Moi chon phuong thuc thanh toan cho khach hang nay: ");
+                    System.out.println("1. Tai khoan ngan hang");
+                    System.out.println("2. Tai khoan the tin dung");
+                    System.out.println("3. Vi dien tu");
+                    System.out.print("Chon: ");
+                    switch (chon) {
+                        case 1:
+                            CKNganHang cknh = new CKNganHang();
+                            cknh.nhapThongTin();
+                            dsKhachHang[vtkh].getPhThThanhToan().setPTNganHang(cknh);
+                            break;
+                        case 2:
+                            CKTinDung cktd = new CKTinDung();
+                            cktd.nhapThongTin();
+                            dsKhachHang[vtkh].getPhThThanhToan().setPTTinDung(cktd);
+                            break;
+                        case 3:
+                            CKViDienTu ckvdt = new CKViDienTu();
+                            ckvdt.nhapThongTin();
+                            dsKhachHang[vtkh].getPhThThanhToan().setPTViDienTu(ckvdt);
+                            break;
+                        default:
+                            System.out.print("Moi chon phuong thuc thanh toan khac: ");
+                            chontl = 0;
+                            break;
+                    }
+                    dskh.setDsKhachHang(dsKhachHang);
+                } else System.out.print("Moi chon phuong thuc thanh toan khac: ");
             }
-        }while (chon == 0);
+        }while (chontl == 0);
     }
     
     @Override

@@ -78,7 +78,7 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
                 cknh.setCVV(Integer.parseInt(lArr[m++]));
                 
                 pttt.setPTNganHang(cknh);
-            } else i+=2; // bỏ qua 2 dòng
+            } else m+=2; // bỏ qua 2 dòng
             // phương thức tín dụng
             if (!lArr[m].equals(" ")) {
                 cktd = new CKTinDung();
@@ -88,7 +88,7 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
                 cktd.setCVV(Integer.parseInt(lArr[m++]));
                 
                 pttt.setPTTinDung(cktd);
-            } else i+=3;
+            } else m+=3;
             // phương thức ví điện tử
             if (!lArr[m].equals(" ")) {
                 ckvdt = new CKViDienTu();
@@ -98,7 +98,7 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
                 ckvdt.setTenVi(lArr[m++]);
                 
                 pttt.setPTViDienTu(ckvdt);
-            } else i+=2;
+            } else m+=2;
             kh.setPhThThanhToan(pttt);
             dsKhachHang[k++] = kh;
         }

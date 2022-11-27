@@ -267,6 +267,44 @@ public class DanhSachNhanVien implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
+        int chon;
+
+        dsNhanVien = getDsNhanVien();
+        do {
+            System.out.println("=== Thong ke ===");
+            System.out.println("1. Loc nhan vien theo nam vao lam");
+            System.out.println("2. Loc nhan vien theo hang");
+            System.out.println("0. Quay lai menu truoc");
+            System.out.println("Moi chon phuong thuc thong ke: ");
+            chon = Integer.parseInt(sc.nextLine());
+            switch (chon) {
+                case 1:
+                    String[] year;
+                    System.out.println("Nhap nam can loc : ");
+                    String find = sc.nextLine();
+                    for(int i=0;i<soLuong;i++){
+                        year = dsNhanVien[i].getNgayVaoLam().split("/");
+                        for (String w : year) {
+                            if(w.equals(find)){
+                                dsNhanVien[i].xuat();
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Nhap hang can loc : ");
+                    char r = sc.nextLine().charAt(0);
+                    for(int i=0;i<soLuong;i++) {
+                        if(getDsNhanVien()[i].getHang() == r){
+                            getDsNhanVien()[i].xuat();
+                        }
+                    }
+                    break;
+            
+                default:
+                    chon = 0;
+                    break;
+            }
+        } while (chon != 0);
     }
 }

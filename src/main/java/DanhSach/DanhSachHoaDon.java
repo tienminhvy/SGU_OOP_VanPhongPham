@@ -141,7 +141,7 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
 
     @Override
     public void themKPhanTuVaoDanhSach() {
-        System.out.println("Nhap so luong hoa don can them vào danh sach: ");
+        System.out.print("Nhap so luong hoa don can them vao danh sach: ");
         int sl = Integer.parseInt(sc.nextLine());
         PhanTu pt;
         for(int i=0;i<sl;i++)

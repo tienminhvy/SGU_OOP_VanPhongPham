@@ -265,20 +265,38 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-        int chon;
+        int chon,n;
+        dsSanPham = getdsSanPham();
         do {
             System.out.println("=== Thong ke ===");
             System.out.println("1. In san pham co so luong lon hon n");
+            System.out.println("2. In san pham co gia ban lon hon n");
+            System.out.println("0. Quay lai menu truoc");
             System.out.println("Moi chon phuong thuc thong ke: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1:
-                    
+                    System.out.println("Nhap so luong can tim : ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for(int i=0;i<soLuong;i++) {
+                        if(dsSanPham[i].getSoLuong() > n){
+                            dsSanPham[i].xuat();
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Nhap gia ban can tim : ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for(int i=0;i<soLuong;i++) {
+                        if(dsSanPham[i].getGia() > n){
+                            dsSanPham[i].xuat();
+                        }
+                    }
                     break;
                 default:
                     chon=0;
                     break;
             }
-        } while(chon==0);
+        } while(chon!=0);
     }
 }
