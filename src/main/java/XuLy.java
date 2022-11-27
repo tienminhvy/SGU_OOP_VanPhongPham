@@ -167,8 +167,10 @@ public class XuLy {
                     break;
                 case 6:
                     PhanTu pt = ttds.timPhanTu();
-                    System.out.println("** Thong tin tim thay **");
-                    pt.xuat();
+                    if (pt != null) {
+                        System.out.println("** Thong tin tim thay **");
+                        pt.xuat();
+                    } else System.out.println("Khong tim thay!");
                     break;
                 case 7:
                     ttds.thongKe();
@@ -206,8 +208,10 @@ public class XuLy {
                     break;
                 case 6:
                     PhanTu pt = ttds.timPhanTu();
-                    System.out.println("** Thong tin tim thay **");
-                    pt.xuat();
+                    if (pt != null) {
+                        System.out.println("** Thong tin tim thay **");
+                        pt.xuat();
+                    } else System.out.println("Khong tim thay!");
                     break;
                 case 7:
                     ttds.thongKe();
@@ -251,8 +255,10 @@ public class XuLy {
                     break;
                 case 6:
                     PhanTu pt = ttds.timPhanTu();
-                    System.out.println("** Thong tin tim thay **");
-                    pt.xuat();
+                    if (pt != null) {
+                        System.out.println("** Thong tin tim thay **");
+                        pt.xuat();
+                    } else System.out.println("Khong tim thay!");
                     break;
                 case 7:
                     ttds.thongKe();
@@ -295,8 +301,10 @@ public class XuLy {
                     break;
                 case 6:
                     PhanTu pt = ttds.timPhanTu();
-                    System.out.println("** Thong tin tim thay **");
-                    pt.xuat();
+                    if (pt != null) {
+                        System.out.println("** Thong tin tim thay **");
+                        pt.xuat();
+                    } else System.out.println("Khong tim thay!");
                     break;
                 case 7:
                     ttds.thongKe();    
