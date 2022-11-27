@@ -85,11 +85,6 @@ public abstract class Nguoi extends PhanTu {
     public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
     
     public void nhap() {
         System.out.print("Nhap ho ten: ");

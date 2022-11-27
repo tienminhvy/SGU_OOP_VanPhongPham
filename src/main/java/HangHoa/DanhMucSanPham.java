@@ -81,14 +81,16 @@ public class DanhMucSanPham extends PhanTu {
         
         DanhSachSanPham ttds = new DanhSachSanPham(); // tạo đối tượng DanhSachSanPham
         
-        boolean check = true;
+        boolean check;
         do {
+            check = true;
             dsMaSP = sc.nextLine(); // đọc từ input
             dsMaSpArr = dsMaSP.split(";"); // tách thành mảng bởi dấu ;
             
             for(int i=0;i<dsMaSpArr.length;i++) // ứng với từng phần tử mảng
                 if (ttds.layPhanTuVoi(dsMaSpArr[i]) == null){ // nếu không tìm thấy
                     check = false;
+                    System.out.println("Khong tim thay ma san pham tai vi tri thu "+i);
                     break;
                 }
             if (!check) System.out.println("Day cac ma san pham khong hop le, hay nhap lai!");
@@ -209,6 +211,8 @@ public class DanhMucSanPham extends PhanTu {
         System.out.println("3. Them ma san pham vao danh sach ma san pham");
         System.out.println("4. Xoa ma san pham khoi danh sach ma san pham");
         System.out.println("5. Nhap moi danh sach ma san pham");
+        System.out.println("6. Them ma san pham vao danh sach ma san pham");
+        System.out.println("7. Xoa ma san pham vao danh sach ma san pham");
         System.out.println("0. Thoat");
         System.out.println("===============================");
         int chon;
@@ -249,6 +253,22 @@ public class DanhMucSanPham extends PhanTu {
                         System.out.print(x+" ");
                     
                     setDsMaSanPham();
+                    break;
+                case 6:
+                    System.out.println("Thong tin hien tai: ");
+                    
+                    for(String x: getDsMaSanPham())
+                        System.out.print(x+" ");
+                    
+                    themKMaSPVaoDs();
+                    break;
+                case 7:
+                    System.out.println("Thong tin hien tai: ");
+                    
+                    for(String x: getDsMaSanPham())
+                        System.out.print(x+" ");
+                    
+                    xoaMaSPKhoiDs();
                     break;
                 default:
                     System.out.println("Hay chon lai!");
