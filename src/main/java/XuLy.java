@@ -130,10 +130,7 @@ public class XuLy {
                     pt.xuat();
                     break;
                 case 7:
-                    
-                    break;
-                case 8:
-                    
+                    ttds.thongKe();
                     break;
                 default:
                     if (chon==0) quanLy();
@@ -172,10 +169,7 @@ public class XuLy {
                     pt.xuat();
                     break;
                 case 7:
-                    
-                    break;
-                case 8:
-                    
+                    ttds.thongKe();
                     break;
                 default:
                     if (chon==0) quanLy();
@@ -214,10 +208,7 @@ public class XuLy {
                     pt.xuat();
                     break;
                 case 7:
-                    
-                    break;
-                case 8:
-                    
+                    ttds.thongKe();
                     break;
                 default:
                     if (chon==0) quanLy();
@@ -262,10 +253,7 @@ public class XuLy {
                     pt.xuat();
                     break;
                 case 7:
-                    
-                    break;
-                case 8:
-                    
+                    ttds.thongKe();
                     break;
                 default:
                     chon = 0;
@@ -309,10 +297,7 @@ public class XuLy {
                     pt.xuat();
                     break;
                 case 7:
-                    
-                    break;
-                case 8:
-                    
+                    ttds.thongKe();    
                     break;
                 default:
                     if (chon==0) quanLy();

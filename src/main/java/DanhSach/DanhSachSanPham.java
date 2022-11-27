@@ -272,11 +272,11 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
             System.out.println("1. In san pham co so luong lon hon n");
             System.out.println("2. In san pham co gia ban lon hon n");
             System.out.println("0. Quay lai menu truoc");
-            System.out.println("Moi chon phuong thuc thong ke: ");
+            System.out.print("Moi chon: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1:
-                    System.out.println("Nhap so luong can tim : ");
+                    System.out.print("Nhap so luong can tim: ");
                     n = Integer.parseInt(sc.nextLine());
                     for(int i=0;i<soLuong;i++) {
                         if(dsSanPham[i].getSoLuong() > n){
@@ -285,7 +285,7 @@ public class DanhSachSanPham implements ThaoTacDanhSach {
                     }
                     break;
                 case 2:
-                    System.out.println("Nhap gia ban can tim : ");
+                    System.out.print("Nhap gia ban can tim: ");
                     n = Integer.parseInt(sc.nextLine());
                     for(int i=0;i<soLuong;i++) {
                         if(dsSanPham[i].getGia() > n){

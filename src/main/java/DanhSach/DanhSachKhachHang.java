@@ -315,6 +315,37 @@ public class DanhSachKhachHang implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
+        int chon, n;
+        dsKhachHang = getDsKhachHang();
+        do {
+            System.out.println("=== Thong ke ===");
+            System.out.println("1. Loc khach hang voi so luong don hang da thanh toan >= n");
+            System.out.println("2. Loc khach hang co tong tien da thanh toan >= n");
+            System.out.println("0. Quay lai menu truoc");
+            System.out.print("Moi chon: ");
+
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    System.out.print("Nhap so luong don hang can tim: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for (KhachHang khachHang: dsKhachHang) {
+                        if (khachHang.getSoDonHangDaThanhToan() >= n) khachHang.xuat();
+                    }
+                    break;
+                case 2:
+                    System.out.print("Nhap so luong tong tien can tim: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for (KhachHang khachHang: dsKhachHang) {
+                        if (khachHang.getTongTienDaThanhToan() >= n) khachHang.xuat();
+                    }
+                    break;
+            
+                default:
+                    chon = 0;
+                    break;
+            }
+        } while (chon != 0);
     }
 }

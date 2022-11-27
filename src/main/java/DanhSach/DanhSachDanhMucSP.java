@@ -266,6 +266,29 @@ public class DanhSachDanhMucSP implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
+        int chon, n;
+        dsDanhMucSP = getDsDanhMucSP();
+        do {
+            System.out.println("=== Thong ke ===");
+            System.out.println("1. Loc danh muc san pham co so luong >= n");
+            System.out.println("0. Quay lai menu truoc");
+            System.out.print("Moi chon: ");
+
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    System.out.print("Nhap so luong can tim: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for (DanhMucSanPham dmSP: dsDanhMucSP) {
+                        if (dmSP.getSoLuong() >= n) dmSP.xuat();
+                    }
+                    break;
+            
+                default:
+                    chon = 0;
+                    break;
+            }
+        } while (chon != 0);
     }
 }

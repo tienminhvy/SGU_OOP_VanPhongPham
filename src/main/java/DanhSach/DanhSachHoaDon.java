@@ -227,6 +227,57 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
 
     @Override
     public void thongKe() {
-    
+        int chon, n;
+        String st;
+        dsHoaDon = getdsHoaDon();
+        do {
+            System.out.println("=== Thong ke ===");
+            System.out.println("1. Loc hoa don co tong tien da thanh toan >= n");
+            System.out.println("2. Loc khach hang co phuong thuc thanh toan xac dinh");
+            System.out.println("0. Quay lai menu truoc");
+            System.out.print("Moi chon: ");
+
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    System.out.print("Nhap so luong don hang can tim: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    for (HoaDon hoaDon: dsHoaDon) {
+                        if (hoaDon.getTongTien() >= n) hoaDon.xuat();
+                    }
+                    break;
+                case 2:
+                    System.out.println("1. Tien mat");
+                    System.out.println("2. Tai khoan ngan hang");
+                    System.out.println("3. Tai khoan the tin dung");
+                    System.out.println("4. Vi dien tu");
+                    System.out.print("Chon phuong thuc thanh toan can tim: ");
+                    n = Integer.parseInt(sc.nextLine());
+                    switch (n) {
+                        case 2:
+                            st = "CKNganHang";
+                            break;
+                        case 3:
+                            st = "CKTinDung";
+                            break;
+                        case 4:
+                            st = "CKViDienTu";
+                            break;
+                    
+                        default:
+                            st = "TienMat";
+                            break;
+                    }
+                    for (HoaDon hoaDon: dsHoaDon) {
+                        if (hoaDon.getPhThThanhToan().equals(st)) hoaDon.xuat();
+                    }
+                    break;
+            
+                default:
+                    chon = 0;
+                    break;
+            }
+        } while (chon != 0);
     }
 }
