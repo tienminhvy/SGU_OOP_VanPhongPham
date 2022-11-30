@@ -57,7 +57,16 @@ public class DanhMucSanPham extends PhanTu {
 
     public void setSoLuong() {
         System.out.print("Nhap so luong: ");
-        soLuong = Integer.parseInt(sc.nextLine());
+        boolean check;
+        do {
+            check = true;
+            try {
+                soLuong = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                System.out.println("Vui long nhap mot so!");
+                check = false;
+            }
+        } while(!check);
     }
 
     public void setSoLuong(int soLuong) {
@@ -146,10 +155,19 @@ public class DanhMucSanPham extends PhanTu {
     
     public void themKMaSPVaoDs() {
         System.out.print("Nhap so ma san pham can them vao danh sach: ");
-        int k = Integer.parseInt(sc.nextLine());
-        
-        for(int i=0;i<k;i++)
-            themMaSPVaoDs();
+        int k;
+        boolean check;
+        do {
+            check = true;
+            try {
+                k = Integer.parseInt(sc.nextLine());
+                for(int i=0;i<k;i++)
+                    themMaSPVaoDs();
+            } catch (Exception e) {
+                check = false;
+                System.out.println("Vui long nhap mot so!");
+            }
+        } while (!check);
     }
     
     public void xoaMaSPKhoiDs() {

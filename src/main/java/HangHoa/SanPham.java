@@ -84,7 +84,16 @@ public class SanPham extends PhanTu {
 
     public void setSoLuong() {
         System.out.print("Nhap so luong: ");
-        soLuong = Integer.parseInt(sc.nextLine());
+        boolean check;
+        do {
+            check = true;
+            try {
+                soLuong = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                check = false;
+                System.out.print("Vui long nhap mot so: ");
+            }
+        } while (!check);
     }
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
@@ -95,8 +104,17 @@ public class SanPham extends PhanTu {
     }
 
     public void setGia() {
-        System.out.print("Nhap gia: ");
-        gia = Integer.parseInt(sc.nextLine());
+        boolean check;
+        System.out.print("Vui long nhap gia: ");
+        do {
+            check = true;
+            try {
+                gia = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                check = false;
+                System.out.print("Vui long nhap mot so: ");
+            }
+        } while (!check);
     }
     public void setGia(String gia) {
         this.gia = Integer.parseInt(gia);

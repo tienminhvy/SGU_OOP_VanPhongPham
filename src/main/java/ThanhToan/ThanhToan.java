@@ -92,7 +92,8 @@ public class ThanhToan {
     }
     
     public void xuat() {
-        System.out.println("*** Cac Phuong Thuc Da Lien Ket ***");
+        if (PTNganHang != null || PTTinDung != null || PTViDienTu != null)
+            System.out.println("*** Cac Phuong Thuc Da Lien Ket ***");
         if (PTNganHang != null) {
             System.out.println("Phuong thuc ngan hang: ");
             PTNganHang.xuat();

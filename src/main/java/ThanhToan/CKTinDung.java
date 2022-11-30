@@ -24,17 +24,6 @@ public class CKTinDung {
         this.soThe = soThe;
         setLoaiThe();
     }
-    
-    //hàm kiểm tra số thẻ;
-    
-    public boolean kiemTraSo(char c){
-        try {
-            Integer.parseInt(""+c);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     public void setSoThe() {
         boolean check;
@@ -42,9 +31,9 @@ public class CKTinDung {
             check = true;
             System.out.print("Nhap so the: ");
             soThe = sc.nextLine();
-            if(soThe.length() == 16 ){
+            if(soThe.length() == 16){
                 for(int i = 0; i < soThe.length(); i++){
-                    if( !kiemTraSo(soThe.charAt(i)) ) {
+                    if( !Character.isDigit(soThe.charAt(i)) ) {
                         check = false;
                         break;
                     }
@@ -70,7 +59,7 @@ public class CKTinDung {
             String CVVTemp = sc.nextLine();
             if(CVVTemp.length() == 3){
                 for(int i = 0; i < CVVTemp.length(); i++){
-                    if( !kiemTraSo(CVVTemp.charAt(i)) ) {
+                    if( !Character.isDigit(CVVTemp.charAt(i)) ) {
                         check = false;
                         break;
                     }

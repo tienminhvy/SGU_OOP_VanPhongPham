@@ -11,15 +11,6 @@ public class CKViDienTu {
         this.tenVi = tenVi;
         this.soDienThoaiLienKet = soDienThoaiLienKet;
     }
-
-    public boolean kiemTraSo(char c){
-        try {
-            Integer.parseInt(""+c);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     
     public String getTenVi() {
         return tenVi;
@@ -75,7 +66,7 @@ public class CKViDienTu {
                 continue;
             }
             for(int i=0; i<soDienThoaiLienKet.length();i++) {
-                if (!kiemTraSo(soDienThoaiLienKet.charAt(i))) {
+                if (!Character.isDigit(soDienThoaiLienKet.charAt(i))) {
                     check = false;
                     break;
                 }

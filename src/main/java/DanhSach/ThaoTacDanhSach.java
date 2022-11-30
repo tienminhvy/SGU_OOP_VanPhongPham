@@ -1,10 +1,7 @@
 package DanhSach;
 import HangHoa.PhanTu;
 import java.util.Scanner;
-/**
- *
- * @author Tien Minh Vy
- */
+
 interface ThaoTacDanhSach {
     public static Scanner sc = new Scanner(System.in);
     public void nhapDanhSach();

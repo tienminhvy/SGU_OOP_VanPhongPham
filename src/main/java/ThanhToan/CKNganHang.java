@@ -21,15 +21,6 @@ public class CKNganHang {
     public void setSoTheTk(String soTheTk) {
         this.soTheTk = soTheTk;
     }
-    
-    public boolean kiemTraSo(char c){ // phương thức kiểm tra số
-        try {
-            Integer.parseInt(""+c);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     public void setSoTheTk() {
         boolean check;
@@ -37,16 +28,14 @@ public class CKNganHang {
             check = true;
             System.out.print("Nhap so the/tai khoan: ");
             soTheTk = sc.nextLine();
-            if(soTheTk.length() == 16 || soTheTk.length() == 19){ // kiểm tra số thẻ
-                for(int i = 0; i < soTheTk.length(); i++){
-                    if( !kiemTraSo(soTheTk.charAt(i)) ) { // nếu có chứa ký tự
-                        check = false;
-                        break;
-                    }
+            for(int i = 0; i < soTheTk.length(); i++){
+                if(!Character.isDigit(soTheTk.charAt(i))) { // nếu có chứa ký tự
+                    check = false;
+                    break;
                 }
-            } else {
+            }
+            if (!check) {
                 System.out.println("So the khong hop le!");
-                check = false;
             }
         } while(!check);
     }
@@ -69,7 +58,7 @@ public class CKNganHang {
             if(CVVTemp.length() == 3){
                 
                 for(int i = 0; i < CVVTemp.length(); i++){
-                    if( !kiemTraSo(CVVTemp.charAt(i)) ) {
+                    if( !Character.isDigit(CVVTemp.charAt(i)) ) {
                         check = false;
                         System.out.println("So CVV/CVC khong hop le!");
                         break;

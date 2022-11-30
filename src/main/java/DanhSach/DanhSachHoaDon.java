@@ -120,7 +120,6 @@ public class DanhSachHoaDon implements ThaoTacDanhSach {
     @Override
     public void xuatDanhSach() {
         System.out.println("=== Danh sach hoa don ===");
-        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s\n", "So hoa don", "So luong san pham", "Tong tien", "Ten khach hang", "Ten thu ngan", "Phuong thuc thanh toan");
         for(int i=0;i<soLuong;i++) {
             dsHoaDon[i].xuat();
         }

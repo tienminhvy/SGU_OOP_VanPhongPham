@@ -123,7 +123,8 @@ public class HoaDon extends PhanTu {
                 System.out.print("Nhap ma san pham:");
                 pt = (SanPham) ttds.layPhanTuVoi(sc.nextLine());
                 
-                if (pt == null) System.out.println("Khong tim thay san pham!");
+                if (pt == null) 
+                    System.out.println("Khong tim thay san pham!");
                 else {
                     dssp[i] = pt;
                     
@@ -214,12 +215,18 @@ public class HoaDon extends PhanTu {
     public void setSoHoaDon() {
         System.out.print("Nhap so hoa don: ");
         DanhSachHoaDon ttds = new DanhSachHoaDon();
-        boolean check = false;
+        boolean check;
         do
         {
-            soHoaDon = Integer.parseInt(sc.nextLine());
-            check = ttds.layPhanTuVoi(soHoaDon+"") == null;
-            if (!check) System.out.print("So hoa don da ton tai, moi nhap lai: ");
+            check = true;
+            try {
+                soHoaDon = Integer.parseInt(sc.nextLine());
+                check = ttds.layPhanTuVoi(soHoaDon+"") == null;
+                if (!check) System.out.print("So hoa don da ton tai, moi nhap lai: ");
+            } catch (Exception e) {
+                check = false;
+                System.out.print("Vui long nhap mot so: ");
+            }
         } while (!check);
     }
 
@@ -236,8 +243,18 @@ public class HoaDon extends PhanTu {
     }
 
     public void setSoLuongSanPham() {
-        System.out.print("Nhap so luong san pham: ");
-        soLuongSanPham = Integer.parseInt(sc.nextLine());
+        boolean check;
+        do
+        {
+            check = true;
+            try {
+                System.out.print("Nhap so luong san pham: ");
+                soLuongSanPham = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                check = false;
+                System.out.print("Vui long nhap mot so: ");
+            }
+        } while (!check);
     }
 
     public int getTongTien() {
@@ -268,7 +285,12 @@ public class HoaDon extends PhanTu {
         KhachHang[] dsKhachHang;
 
         do{
-            chon = Integer.parseInt(sc.nextLine());
+            try {
+                chon = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                System.out.println("Vui long nhap mot so!");
+                continue;
+            }
             switch (chon) {
                 case 1:
                     phThThanhToan = "TienMat";
@@ -374,6 +396,7 @@ public class HoaDon extends PhanTu {
 
     @Override
     public void xuat() {
+        System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s\n", "So hoa don", "So luong san pham", "Tong tien", "Ten khach hang", "Ten thu ngan", "Phuong thuc thanh toan");
         System.out.printf("%-20s %-20s %-20s %-25s %-25s %-30s \n", soHoaDon, soLuongSanPham, tongTien, khachHang.getHoTen(), thuNgan.getHoTen(), phThThanhToan);
         System.out.println("Danh sach san pham: ");
         System.out.printf("%-20s %-50s %-20s %-20s %-20s %-20s \n","Ma san pham", "Ten san pham", "Thuong hieu", "Noi san xuat", "So luong", "Gia");

@@ -1,10 +1,6 @@
 package Nguoi;
 import DanhSach.DanhSachKhachHang;
 import ThanhToan.ThanhToan;
-/**
- *
- * @author Tien Minh Vy
- */
 
 public class KhachHang extends Nguoi {
     private int soDonHangDaThanhToan;
@@ -94,10 +90,12 @@ public class KhachHang extends Nguoi {
 
     @Override
     public void xuat() {
+        System.out.printf("%-25s %-25s %-20s %-50s %-20s\n", "Ma khach hang", "Ho ten", "CMND/CCCD", "Dia chi", "SDT");
         System.out.printf("%-25s ", getMaKhachHang());
         super.xuat();
         System.out.println();
         if (phThThanhToan != null) phThThanhToan.xuat();
+        System.out.println("---");
     }
     
     public static void xuat(KhachHang kh) {

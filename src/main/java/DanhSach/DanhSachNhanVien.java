@@ -4,14 +4,11 @@ import File.FileHandler;
 import HangHoa.PhanTu;
 import Nguoi.NhanVien;
 
-/**
- *
- * @author Admin
- */
+
 public class DanhSachNhanVien implements ThaoTacDanhSach {
     private int soLuong;
     private NhanVien[] dsNhanVien = getDsNhanVien();
-    
+
     public DanhSachNhanVien(){
     
     }

@@ -1,9 +1,6 @@
 package Nguoi;
 import HangHoa.PhanTu;
-/**
- *
- * @author Tien Minh Vy
- */
+
 public abstract class Nguoi extends PhanTu {
     private String hoTen;
     private String cmt;
@@ -25,7 +22,21 @@ public abstract class Nguoi extends PhanTu {
     }
 
     public void setHoTen() {
-        this.hoTen = sc.nextLine();
+        boolean check = false;
+        char ch;
+        do {
+            check = true;
+            hoTen = sc.nextLine();
+            for (int i = 0; i < hoTen.length(); i++) {
+                ch = hoTen.charAt(i);
+                if (Character.isDigit(ch)) {
+                    check = false;
+                    break;
+                }
+            }
+            if (!check) System.out.println("Ho ten khong duoc phep chua ky tu so! Moi nhap lai:");
+        } while (!check);
+        
     }
 
     public void setHoTen(String hoTen) {
@@ -75,8 +86,18 @@ public abstract class Nguoi extends PhanTu {
             soDienThoai = sc.nextLine();
             if (soDienThoai.length() == 10) check = true;
             else check = false;
+            
             if (soDienThoai.indexOf("0") == 0) check = true;
             else check = false;
+
+            for (int i = 0; i < soDienThoai.length(); i++) {
+                if (!Character.isDigit(soDienThoai.charAt(i)))
+                {
+                    check = false;
+                    break;
+                }
+            }
+            
             if (!check) System.out.print("Moi nhap lai: ");
         } while (!check);
         this.soDienThoai = soDienThoai;

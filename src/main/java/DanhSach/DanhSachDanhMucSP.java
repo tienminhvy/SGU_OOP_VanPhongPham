@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DanhSach;
 
 import File.FileHandler;
 import HangHoa.DanhMucSanPham;
 import HangHoa.PhanTu;
 
-/**
- *
- * @author Admin
- */
 public class DanhSachDanhMucSP implements ThaoTacDanhSach {
 
     private int soLuong;
